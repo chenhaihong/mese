@@ -1,0 +1,14 @@
+{
+  "name": "mese",
+  "version": "0.0.1",
+  "description": "一个简易的 React ssr 框架。",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "erye <erye@tiiit.cn>",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^24.1.0"
+  }
+}
