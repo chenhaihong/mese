@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+const mese = require('..');
+
+program
+  .option('-d, --development', '开发模式')
+  .parse(process.argv);
+
+const mode = program.development ? 'development' : 'production';
+mese.build(mode);

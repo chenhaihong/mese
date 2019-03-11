@@ -4,11 +4,11 @@
   "description": "一个简易的 React ssr 框架。",
   "main": "index.js",
   "bin": {
-    "smash": "bin.js"
+    "mese": "bin/mese"
   },
   "scripts": {
     "test": "jest",
-    "b": "node __test__/bin.test.js"
+    "test-mese": "node __test__/mese.test.js"
   },
   "repository": {
     "type": "git",
@@ -49,8 +49,10 @@
     "@babel/preset-react": "^7.0.0",
     "acorn": "^6.1.1",
     "babel-loader": "^8.0.5",
+    "commander": "^2.19.0",
     "css-loader": "^2.1.1",
     "exec-sh": "^0.3.2",
+    "express": "^4.16.4",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "fs-extra": "^7.0.1",
     "html-loader": "^0.5.5",

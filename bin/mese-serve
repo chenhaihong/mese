@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+const mese = require('..');
+
+program
+  .option('-p, --port [port]', '设置端口号', 3000)
+  .parse(process.argv);
+
+const port = program.port;
+mese.serve(port);

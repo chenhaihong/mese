@@ -6,6 +6,6 @@
 const path = require('path');
 const execSh = require('exec-sh');
 
-const bin = path.resolve(__dirname, '../bin.js');
+const mese = path.resolve(__dirname, '../bin/mese');
 const cwd = path.resolve(__dirname, './demo');
-execSh(`node ${bin} build`, { cwd });
+execSh(`node ${mese} watch --development`, { cwd });

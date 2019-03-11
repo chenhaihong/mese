@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+const { version } = require('../package.json');
+
+program
+  .version(version, '-v, --version')
+  .command('build', '生产模式下构建文件').alias('b')
+  .command('watch', 'watch模式下构建文件').alias('w')
+  .command('serve', '启动服务').alias('s')
+  .on('--help', function () {
+    console.log('');
+    console.log('Examples:');
+    console.log('  $ mese build');
+    console.log('  $ mese watch');
+    console.log('  $ mese build && mese serve --port 3000');
+  })
+  .parse(process.argv);
+
+if (!process.argv.slice(2).length) {
+  program.help();
+}
+

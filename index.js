@@ -3,10 +3,14 @@
  * 导出构建方法
  */
 
-const watch = require('./lib/watch');
-const build = require('./lib/build');
-
 module.exports = {
-  watch: () => { watch(require('./lib/webpack.config')) },
-  build: () => { build(require('./lib/webpack.config')) },
+  build(mode) {
+    const build = require('./lib/build');
+    build(require('./lib/webpack.config')(mode));
+  },
+  watch(mode) {
+    const watch = require('./lib/watch');
+    watch(require('./lib/webpack.config')(mode));
+  },
+  serve: require('./lib/serve')
 };
