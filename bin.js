@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
 const mess = require('.');
-const argvs = process.argv.slice(2);
 const pkg = require('./package.json');
+const argvs = process.argv.slice(2);
+
+console.log(argvs);
 
 if (argvs.includes('build')) {
   mess.build();
