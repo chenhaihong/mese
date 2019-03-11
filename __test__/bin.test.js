@@ -8,4 +8,4 @@ const execSh = require('exec-sh');
 
 const bin = path.resolve(__dirname, '../bin.js');
 const cwd = path.resolve(__dirname, './demo');
-execSh(`node ${bin} watch`, { cwd });
+execSh(`node ${bin} build`, { cwd });
