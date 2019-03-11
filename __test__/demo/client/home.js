@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
-import Index from '../app/index';
+import Home from '../app/Home';
 
 ReactDOM.hydrate(
-  <Index />,
+  <Home />,
   document.getElementById('root')
 );

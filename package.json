@@ -3,8 +3,12 @@
   "version": "0.0.1",
   "description": "一个简易的 React ssr 框架。",
   "main": "index.js",
+  "bin": {
+    "smash": "bin.js"
+  },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "b": "node bin.js"
   },
   "repository": {
     "type": "git",
@@ -46,7 +50,10 @@
     "acorn": "^6.1.1",
     "babel-loader": "^8.0.5",
     "css-loader": "^2.1.1",
+    "exec-sh": "^0.3.2",
     "fs-extra": "^7.0.1",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
     "json-loader": "^0.5.7",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
