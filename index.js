@@ -4,13 +4,17 @@
  */
 
 module.exports = {
-  build(mode) {
+  build: function (mode) {
     const build = require('./lib/build');
-    build(require('./lib/webpack.config')(mode));
+    const config = require('./lib/webpack.config')(mode);
+    build(config);
   },
-  watch(mode) {
+  watch: function (mode) {
     const watch = require('./lib/watch');
-    watch(require('./lib/webpack.config')(mode));
+    const config = require('./lib/webpack.config')(mode);
+    watch(config);
   },
-  serve: require('./lib/serve')
+  serve: function (port) {
+    require('./lib/serve')(port);
+  }
 };

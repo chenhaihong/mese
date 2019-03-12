@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "jest",
-    "test-mese": "node __test__/mese.test.js"
+    "premese-serve": "node bin/test/mese-build.js",
+    "mese-serve": "node bin/test/mese-serve.js"
   },
   "repository": {
     "type": "git",
@@ -51,6 +52,7 @@
     "babel-loader": "^8.0.5",
     "commander": "^2.19.0",
     "css-loader": "^2.1.1",
+    "eslint": "^5.15.1",
     "exec-sh": "^0.3.2",
     "express": "^4.16.4",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
@@ -63,6 +65,11 @@
     "portfinder": "^1.0.20",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
-    "webpack-dev-server": "^3.2.1"
+    "webpack-dev-server": "^3.2.1",
+    "webpack-manifest-plugin": "^2.0.4"
+  },
+  "peerDependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
   }
 }
