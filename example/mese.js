@@ -4,6 +4,6 @@
 
 module.exports = {
   pages: [
-    './app/home.js'
+    './pages/home.js'
   ]
 };
