@@ -14,7 +14,7 @@ module.exports = {
     const config = require('./lib/webpack.config')(mode);
     watch(config);
   },
-  serve: function (port) {
-    require('./lib/serve')(port);
+  serve: function (port, open) {
+    require('./lib/serve')(port, open);
   }
 };
