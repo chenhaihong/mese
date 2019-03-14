@@ -10,4 +10,4 @@ program
 
 const port = program.port;
 const open = program.open;
-mese.serve(port);
+mese.serve(port, open);

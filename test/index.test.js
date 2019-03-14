@@ -1,6 +1,6 @@
-const mese = require('../index');
+const mese = require('..');
 
-test('mese has desired properties', () => {
+test('mese should have desired properties', () => {
   expect(mese).toHaveProperty('build');
   expect(mese).toHaveProperty('watch');
   expect(mese).toHaveProperty('serve');
