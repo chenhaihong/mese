@@ -31,7 +31,8 @@
   },
   "homepage": "https://github.com/chenhaihong/mese#readme",
   "devDependencies": {
-    "jest": "^24.1.0"
+    "eslint": "^5.15.1",
+    "jest": "^24.5.0"
   },
   "dependencies": {
     "@babel/core": "^7.3.4",
@@ -57,7 +58,6 @@
     "babel-loader": "^8.0.5",
     "commander": "^2.19.0",
     "css-loader": "^2.1.1",
-    "eslint": "^5.15.1",
     "exec-sh": "^0.3.2",
     "express": "^4.16.4",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
@@ -69,12 +69,10 @@
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "opn": "^5.4.0",
-    "portfinder": "^1.0.20",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
-    "webpack-dev-server": "^3.2.1",
     "webpack-manifest-plugin": "^2.0.4"
   }
 }

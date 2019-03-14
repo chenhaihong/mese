@@ -5,12 +5,12 @@
 # 安装
 
 ```s
-$ npm i mese
+$ npm i -g mese
 ```
 
 # 配置
 
-在项目下添加 `mese.js`：
+在项目下添加 `mese.config.js`：
 
 ```javascript
 module.exports = {
