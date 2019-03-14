@@ -4,6 +4,10 @@
  */
 
 module.exports = {
+  init: function (directory) {
+    const init = require('./lib/init');
+    init(directory);
+  },
   build: function (mode) {
     const build = require('./lib/build');
     const config = require('./lib/webpack.config')(mode);

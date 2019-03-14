@@ -5,6 +5,7 @@ const { version } = require('../package.json');
 
 program
   .version(version, '-v, --version')
+  .command('init', '初始化项目').alias('i')
   .command('build', '生产模式下构建文件').alias('b')
   .command('watch', 'watch模式下构建文件').alias('w')
   .command('serve', '启动服务').alias('s')

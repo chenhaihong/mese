@@ -1,0 +1,15 @@
+{
+  "name": "mese-template",
+  "version": "0.0.1",
+  "description": "mese执行初始化时自动生成模板",
+  "author": "erye <erye@tiiit.cn>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenhaihong/mese.git"
+  },
+  "dependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  }
+}

@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+const mese = require('..');
+
+program
+  .option('-dir, --directory', '初始化的目录')
+  .parse(process.argv);
+
+const directory = program.directory;
+
+mese.init(directory);
