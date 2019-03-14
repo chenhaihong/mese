@@ -1,9 +1,13 @@
 {
-  "name": "demo",
+  "name": "mese-example",
   "version": "0.0.1",
-  "description": "测试",
-  "author": "",
+  "description": "mese-example",
+  "author": "erye <erye@tiiit.cn>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenhaihong/mese.git"
+  },
   "dependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4"

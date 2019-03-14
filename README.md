@@ -8,19 +8,14 @@
 $ npm i -g mese
 ```
 
-# 配置
+# 初始化
 
-在项目下添加 `mese.config.js`：
-
-```javascript
-module.exports = {
-  pages: [
-    './pages/home.js' // 数组第一个作为首页，文件名称是页面名称
-  ]
-};
+```s
+$ mkdir demo && cd demo
+$ mese init
 ```
 
-# 使用
+# 构建 && 启动服务
 
 ```s
 $ mese build
