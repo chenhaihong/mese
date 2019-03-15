@@ -4,20 +4,34 @@
 
 # 安装
 
-```s
+```shell
 $ npm i -g mese
 ```
 
-# 初始化
+# 项目初始化
 
-```s
+```shell
 $ mkdir demo && cd demo
 $ mese init
 ```
 
 # 构建 && 启动服务
 
-```s
-$ mese build
-$ mese serve --open --port 8080
+```shell
+$ mese build --development # 开发模式
+$ mese serve --port 8080 --open # 使用8080端口，自动打开首页
+```
+
+# 配置
+
+项目里的 `mese.config.js` 作为 `mese` 的配置：
+
+```js
+module.exports = {
+  pages: [
+    './pages/home.js', // 数组第一个作为首页，文件名称是页面名称
+    './pages/404.js', // 名称为404的页面将作为404页面
+    './pages/500.js' // 名称为500的页面将作为500页面
+  ]
+};
 ```
