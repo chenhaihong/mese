@@ -1,7 +1,8 @@
-<div style="text-align: center;">
-  <img src="logo.png">
-  <p>一个简易的 React ssr 框架。</p>
-</div>
+<p align="center">
+  <img src="logo.jpg">
+</p>
+<h1 align="center">mess</h1>
+<p align="center">一个简易的 React ssr 框架。</p>
 
 # 安装
 
