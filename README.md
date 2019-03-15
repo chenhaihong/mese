@@ -1,6 +1,7 @@
-# mese
-
-一个简易的 React ssr 框架。
+<div style="text-align: center;">
+  <img src="logo.png">
+  <p>一个简易的 React ssr 框架。</p>
+</div>
 
 # 安装
 
