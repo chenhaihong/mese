@@ -8,7 +8,7 @@
   },
   "scripts": {
     "eslint-init": "eslint --init",
-    "eslint": "eslint ./*.js lib/*.js bin/* --fix",
+    "eslint": "eslint ./ --fix",
     "jest": "jest",
     "mese": "node bin/test/mese.js",
     "mese-init": "node bin/test/mese-init.js",
@@ -33,6 +33,7 @@
   "homepage": "https://github.com/chenhaihong/mese#readme",
   "devDependencies": {
     "eslint": "^5.15.1",
+    "eslint-plugin-react": "^7.12.4",
     "jest": "^24.5.0"
   },
   "dependencies": {

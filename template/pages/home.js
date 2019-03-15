@@ -3,7 +3,7 @@ import './common.less';
 import React from 'react';
 
 class Home extends React.Component {
-  handleClick = () => {
+  handleClick() {
     alert('React.hydrate 成功啦~');
   }
 
