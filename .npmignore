@@ -3,3 +3,4 @@ dist
 test
 example
 hello-mese
+.eslintrc.js
