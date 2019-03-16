@@ -1,6 +1,6 @@
 {
   "name": "mese",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "一个简易的 React ssr 框架。",
   "main": "index.js",
   "bin": {
@@ -15,7 +15,8 @@
     "mese-build": "node bin/test/mese-build.js",
     "mese-watch": "node bin/test/mese-watch.js",
     "premese-serve": "npm run mese-build",
-    "mese-serve": "node bin/test/mese-serve.js"
+    "mese-serve": "node bin/test/mese-serve.js",
+    "publish": "npm publish --access public"
   },
   "repository": {
     "type": "git",
