@@ -35,7 +35,17 @@ module.exports = {
         'semi': [
             'error',
             'always'
-        ]
+        ],
+        'require-jsdoc': ['error', {
+            'require': {
+                'FunctionDeclaration': true,
+                'MethodDefinition': false,
+                'ClassDeclaration': false,
+                'ArrowFunctionExpression': false,
+                'FunctionExpression': false
+            }
+        }],
+        'valid-jsdoc': 'error'
     },
     'settings': {
         'react': {
