@@ -9,6 +9,7 @@
   "scripts": {
     "eslint": "eslint ./ --fix",
     "test": "jest",
+    "jest": "jest lib/test/build.test.js",
     "jest-coverage": "jest --coverage",
     "publish": "npm publish --access public"
   },

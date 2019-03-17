@@ -1,6 +1,5 @@
-
 /**
- * 导出构建方法
+ * 导出方法
  */
 
 const init = require('./lib/init');

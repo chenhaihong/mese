@@ -9,4 +9,8 @@ program
   .parse(process.argv);
 
 const directory = path.resolve(process.cwd(), program.directory);
-mese.init(directory);
+mese.init(directory, function (err) {
+  if (err) {
+    throw err;
+  }
+});
