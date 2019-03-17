@@ -7,9 +7,11 @@
     "mese": "bin/mese"
   },
   "scripts": {
+    "mese-build": "cd example && node ../bin/mese b",
+    "mese-watch": "cd example && node ../bin/mese w",
+    "mese-serve": "cd example && node ../bin/mese s",
     "eslint": "eslint ./ --fix",
     "test": "jest",
-    "jest": "jest lib/test/watch.test.js",
     "jest-coverage": "jest --coverage",
     "publish": "npm publish --access public"
   },

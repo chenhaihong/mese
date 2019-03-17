@@ -1,6 +1,6 @@
 /*global expect test:true*/
 
-const constants = require('../constants');
+const constants = require('../../lib/constants');
 
 test('constants should have desired properties', () => {
   expect(constants).toHaveProperty('mese');

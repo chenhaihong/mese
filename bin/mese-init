@@ -2,15 +2,13 @@
 
 const path = require('path');
 const program = require('commander');
-const mese = require('..');
+const fse = require('fs-extra');
 
 program
   .option('-d, --directory [directory]', '初始化的目录', './')
   .parse(process.argv);
 
-const directory = path.resolve(process.cwd(), program.directory);
-mese.init(directory, function (err) {
-  if (err) {
-    throw err;
-  }
-});
+const dir = path.resolve(process.cwd(), program.directory);
+
+fse.copySync(path.join(__dirname, '../example'), dir);
+console.log('[Mese] Initialized successfully.');

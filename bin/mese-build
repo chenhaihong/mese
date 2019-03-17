@@ -1,18 +1,35 @@
 #!/usr/bin/env node
-
+/*eslint no-console: 0 */
 const path = require('path');
 const program = require('commander');
-const mese = require('..');
-const constants = require('../lib/constants');
-const getConfig = require('../lib/webpack.config');
+const webpack = require('webpack');
+const getConfig = require('../lib/getWebpackConfig');
 
 program
   .option('-d, --development', '开发模式')
+  .option('-c, --config [config]', '配置文件', 'mese.config.js')
+  .option('-o, --output [output]', '存放构建结果的目录', 'dist')
   .parse(process.argv);
 
 const cwd = process.cwd();
 const mode = program.development ? 'development' : 'production';
-const meseUrl = path.join(cwd, constants.mese);
-const outputPath = path.join(cwd, constants.dist);
+const meseUrl = path.join(cwd, program.config);
+const outputPath = path.join(cwd, program.output);
+
 const config = getConfig({ mode, meseUrl, outputPath });
-mese.build(config);
+const compiler = webpack(config);
+compiler.run(function (err, stats) {
+  // stats 统计信息 https://webpack.docschina.org/configuration/stats
+  console.log(stats.toString({
+    all: false,
+    assets: !stats.hasErrors(),
+    chunks: false,
+    colors: true,
+    errors: true,
+    errorDetails: true,
+    maxModules: 15,
+    modules: false,
+    moduleTrace: true,
+    warnings: true,
+  }));
+});

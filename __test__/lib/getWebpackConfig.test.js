@@ -1,6 +1,6 @@
 /*global describe expect test:true*/
 const path = require('path');
-const getConfig = require('../getWebpackConfig');
+const getConfig = require('../../lib/getWebpackConfig');
 
 describe('webpack config test', () => {
   const mode = 'development';
