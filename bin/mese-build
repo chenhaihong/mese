@@ -2,10 +2,14 @@
 
 const program = require('commander');
 const mese = require('..');
+const constants = require('../lib/constants');
+const getConfig = require('../lib/webpack.config');
 
 program
   .option('-d, --development', '开发模式')
   .parse(process.argv);
 
 const mode = program.development ? 'development' : 'production';
-mese.build(mode);
+const meseUrl = constants.mese;
+const config = getConfig({ mode, meseUrl });
+mese.build(config);

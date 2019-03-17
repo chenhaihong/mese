@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const path = require('path');
 const program = require('commander');
 const mese = require('..');
 
@@ -7,5 +8,5 @@ program
   .option('-d, --directory [directory]', '初始化的目录', './')
   .parse(process.argv);
 
-const directory = program.directory;
+const directory = path.resolve(process.cwd(), program.directory);
 mese.init(directory);

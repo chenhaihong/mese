@@ -7,15 +7,9 @@
     "mese": "bin/mese"
   },
   "scripts": {
-    "eslint-init": "eslint --init",
     "eslint": "eslint ./ --fix",
-    "jest": "jest",
-    "mese": "node bin/test/mese.js",
-    "mese-init": "node bin/test/mese-init.js",
-    "mese-build": "node bin/test/mese-build.js",
-    "mese-watch": "node bin/test/mese-watch.js",
-    "premese-serve": "npm run mese-build",
-    "mese-serve": "node bin/test/mese-serve.js",
+    "test": "jest",
+    "jest-coverage": "jest --coverage",
     "publish": "npm publish --access public"
   },
   "repository": {
