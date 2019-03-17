@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const path = require('path');
 const program = require('commander');
 const mese = require('..');
 const constants = require('../lib/constants');
@@ -9,7 +10,9 @@ program
   .option('-d, --development', '开发模式')
   .parse(process.argv);
 
+const cwd = process.cwd();
 const mode = program.development ? 'development' : 'production';
-const meseUrl = constants.mese;
-const config = getConfig({ mode, meseUrl });
+const meseUrl = path.join(cwd, constants.mese);
+const outputPath = path.join(cwd, constants.dist);
+const config = getConfig({ mode, meseUrl, outputPath });
 mese.build(config);
