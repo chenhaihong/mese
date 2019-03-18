@@ -1,4 +1,4 @@
-/*global beforeEach afterEach jest test expect:true*/
+/*global beforeAll jest test expect:true*/
 const path = require('path');
 const execSh = require('exec-sh');
 // const fs = require('fs-extra');
@@ -19,7 +19,7 @@ beforeAll(() => {
     const meseUrl = path.join(dir, 'mese.config.js');
     const outputPath = path.join(dir, 'dist');
     const config = getConfig(mode, meseUrl, outputPath);
-    build(config, function (err, stats) {
+    build(config, function () {
       resolve();
     });
   });

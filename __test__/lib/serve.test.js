@@ -1,4 +1,4 @@
-/*global expect test:true*/
+/*global beforeAll afterAll jest describe expect test:true*/
 
 const path = require('path');
 const axios = require('axios');
@@ -22,7 +22,7 @@ beforeAll(() => {
     const meseUrl = path.join(dir, 'mese.config.js');
     const outputPath = path.join(dir, 'dist');
     const config = getConfig(mode, meseUrl, outputPath);
-    build(config, function (err, stats) {
+    build(config, function () {
       // 开启服务
       const index = 'home';
       const manifest = require(path.join(dir, 'dist/manifest.json'));

@@ -1,4 +1,4 @@
-/*global beforeEach afterEach test expect:true*/
+/*global beforeAll afterAll test expect:true*/
 const path = require('path');
 const execSh = require('exec-sh');
 const fs = require('fs-extra');

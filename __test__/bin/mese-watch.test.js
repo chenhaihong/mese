@@ -1,4 +1,4 @@
-/*global beforeEach afterEach jest test expect:true*/
+/*global beforeAll jest test expect:true*/
 const path = require('path');
 const execSh = require('exec-sh');
 // const fs = require('fs-extra');

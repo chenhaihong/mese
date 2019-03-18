@@ -1,4 +1,4 @@
-/*global describe expect test:true*/
+/*global beforeAll afterAll describe expect test:true*/
 const path = require('path');
 const fse = require('fs-extra');
 const init = require('../../lib/init');

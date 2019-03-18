@@ -1,4 +1,4 @@
-/*global expect test:true*/
+/*global beforeAll afterAll jest expect test:true*/
 
 const path = require('path');
 const fs = require('fs-extra');
