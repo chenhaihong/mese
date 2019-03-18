@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const program = require('commander');
-const mese = require('..');
+const serve = require('../lib/serve');
 
 program
   .option('-p, --port [port]', '设置端口号', 3000)
@@ -10,4 +10,4 @@ program
 
 const port = program.port;
 const open = program.open;
-mese.serve(port, open);
+serve(port, open);
