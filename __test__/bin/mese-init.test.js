@@ -6,12 +6,8 @@ const fs = require('fs-extra');
 const mese = path.resolve(__dirname, '../../bin/mese');
 const dir = path.join(__dirname, 'dirToInit');
 
-beforeEach(() => {
-  removeDir();
-});
-
-afterEach(() => {
-  removeDir();
+afterAll(() => {
+  fs.removeSync(dir);
 });
 
 test('mese-init should run well', (done) => {
@@ -21,11 +17,3 @@ test('mese-init should run well', (done) => {
     done();
   });
 });
-
-/**
- * 移除生成模板文件
- * @returns {void}
- */
-function removeDir() {
-  fs.removeSync(dir);
-}

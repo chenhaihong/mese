@@ -11,7 +11,7 @@
     "mese-watch": "cd example && node ../bin/mese w",
     "mese-serve": "cd example && node ../bin/mese s -o",
     "eslint": "eslint ./ --fix",
-    "jest": "jest __test__/lib/serve.test.js",
+    "jest": "jest __test__/lib/watch.test.js",
     "test": "jest --detectOpenHandles",
     "jest-coverage": "jest --detectOpenHandles --coverage ",
     "publish": "npm publish --access public"

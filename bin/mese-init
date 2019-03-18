@@ -3,12 +3,13 @@
 const path = require('path');
 const program = require('commander');
 const fse = require('fs-extra');
+const init = require('../lib/init');
 
 program
   .option('-d, --directory [directory]', '初始化的目录', './')
   .parse(process.argv);
 
 const dir = path.resolve(process.cwd(), program.directory);
-
-fse.copySync(path.join(__dirname, '../example'), dir);
-console.log('[Mese] Initialized successfully.');
+init(dir, function () {
+  console.log('[Mese] Initialized successfully.');
+});
