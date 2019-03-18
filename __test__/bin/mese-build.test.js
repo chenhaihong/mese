@@ -8,6 +8,7 @@ const dir = path.join(__dirname, 'dirToBuild');
 const mese = path.resolve(__dirname, '../../bin/mese');
 
 beforeAll(() => {
+  fs.removeSync(dir);
   init(dir, () => { });
 });
 

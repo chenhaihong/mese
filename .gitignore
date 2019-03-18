@@ -1,2 +1,9 @@
 node_modules
 coverage
+dirToBuild
+dirToInit
+dirToServe
+dirToWatch
+dirToMese
+dirToGetWebpackConfig
+dist

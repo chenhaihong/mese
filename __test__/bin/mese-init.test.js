@@ -6,6 +6,10 @@ const fs = require('fs-extra');
 const mese = path.resolve(__dirname, '../../bin/mese');
 const dir = path.join(__dirname, 'dirToInit');
 
+beforeAll(() => {
+  fs.removeSync(dir);
+});
+
 afterAll(() => {
   fs.removeSync(dir);
 });

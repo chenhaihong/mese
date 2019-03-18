@@ -2,6 +2,7 @@
 
 const path = require('path');
 const fse = require('fs-extra');
+const opn = require('opn');
 const program = require('commander');
 const serve = require('../lib/serve');
 
@@ -12,25 +13,34 @@ program
   .option('-o, --open', '自动打开首页')
   .parse(process.argv);
 
+const cwd = process.cwd();
 const meseUrl = path.join(cwd, program.config);
 const staticDir = path.join(cwd, program.staticDir);
 const port = program.port;
 const open = program.open;
-const homeName = getHomeName(meseUrl);
-const manifest = getManifest(staticDir);
-serve({ homeName, staticDir, port, open });
+const index = getIndex();
+const manifest = getManifest();
+serve({
+  index,
+  manifest,
+  staticDir,
+  port,
+  callback() {
+    open && opn(`http://localhost:${port}`);
+    console.log(`[Mese] Listening on port ${port}`);
+  }
+});
 
 /**
  * 获取首页的名称字符串
- * @param {String} meseUrl mese配置文件地址
  * @returns {String} 首页文件的名称
  */
-function getHomeName(meseUrl) {
-  if (!fse.pathExistsSync(url)) {
+function getIndex() {
+  if (!fse.pathExistsSync(meseUrl)) {
     console.log('[Mese] mess.js not found.');
     process.exit(-1);
   }
-  const pages = require(url).pages;
+  const pages = require(meseUrl).pages;
   if (!pages) {
     console.log('[Mese] pages not found.');
     process.exit(-1);
@@ -38,12 +48,15 @@ function getHomeName(meseUrl) {
   return path.parse(pages[0]).name;
 }
 
-function getManifest(staticDir) {
+/**
+ * 获取manifest.json的内容
+ * @returns {Object} manifest.json的内容
+ */
+function getManifest() {
   const url = path.join(staticDir, 'manifest.json');
   if (!fse.pathExistsSync(url)) {
     console.log('[Mese] manifest.json not found.');
     process.exit(-1);
   }
-  manifest = require(url);
-  return manifest;
+  return require(url);
 }

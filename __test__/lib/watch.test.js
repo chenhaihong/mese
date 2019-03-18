@@ -1,32 +1,36 @@
 /*global expect test:true*/
 
 const path = require('path');
-const fs = require('fs-extra');
+const fse = require('fs-extra');
 const init = require('../../lib/init');
-const build = require('../../lib/build');
 const getConfig = require('../../lib/getWebpackConfig');
+const watch = require('../../lib/watch');
 
-const dir = path.join(__dirname, 'dirToBuild');
+const dir = path.join(__dirname, 'dirToWatch');
 
 beforeAll(() => {
-  fs.removeSync(dir);
+  fse.removeSync(dir);
   init(dir, () => { });
 });
 
 afterAll(() => {
-  fs.removeSync(dir);
+  fse.removeSync(dir);
 });
 
 jest.setTimeout(20000);
-test('build should run well', (done) => {
-  expect.assertions(2);
+test('watch should run well', (done) => {
+  expect.assertions(4);
   const mode = 'development';
   const meseUrl = path.join(dir, 'mese.config.js');
   const outputPath = path.join(dir, 'dist');
   const config = getConfig(mode, meseUrl, outputPath);
-  build(config, function (err, stats) {
+  watch(config, (err, stats, watching) => {
     expect(err).toBeNull();
     expect(stats.hasErrors()).toBeFalsy();
-    done();
+    expect(watching).toBeTruthy();
+    watching.close(function () {
+      expect(1).toBe(1);
+      done();
+    });
   });
 });

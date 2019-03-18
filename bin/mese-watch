@@ -2,8 +2,8 @@
 /*eslint no-console: 0 */
 const path = require('path');
 const program = require('commander');
-const webpack = require('webpack');
 const getConfig = require('../lib/getWebpackConfig');
+const watch = require('../lib/watch');
 
 program
   .option('-d, --development', '开发模式')
@@ -13,17 +13,19 @@ program
 
 const cwd = process.cwd();
 const mode = program.development ? 'development' : 'production';
-const meseUrl = path.join(cwd, program.config);
-const outputPath = path.join(cwd, program.output);
+const meseUrl = path.resolve(cwd, program.config);
+const outputPath = path.resolve(cwd, program.output);
 
-const config = getConfig({ mode, meseUrl, outputPath });
-const compiler = webpack(config);
-const watchOptions = {
-  poll: 1000,
-  aggregateTimeout: 300,
-  ignored: /node_modules/,
-};
-compiler.watch(watchOptions, (err, stats) => {
+const config = getConfig(mode, meseUrl, outputPath);
+watch(config, (err, stats) => {
+  if (err) {
+    console.error(err.stack || err);
+    if (err.details) {
+      console.error(err.details);
+    }
+    return;
+  }
+
   // stats 统计信息 https://webpack.docschina.org/configuration/stats
   console.log(stats.toString({
     all: false,
