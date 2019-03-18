@@ -1,7 +1,7 @@
 /*global beforeEach afterEach jest test expect:true*/
 const path = require('path');
-const fs = require('fs-extra');
 const execSh = require('exec-sh');
+const fs = require('fs-extra');
 
 const mese = path.resolve(__dirname, '../../bin/mese');
 const cwd = path.resolve(__dirname, '../../example');
@@ -15,7 +15,7 @@ afterEach(() => {
 });
 
 jest.setTimeout(20000);
-test('mese-build should run well', (done) => {
+test('mese-watch should run well', (done) => {
   expect.assertions(3);
   const child = execSh(`node ${mese} watch -d`, { cwd }, function (err) {
     expect(err).toBeNull();
