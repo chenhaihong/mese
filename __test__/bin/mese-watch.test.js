@@ -1,14 +1,14 @@
 /*global beforeEach afterEach jest test expect:true*/
 const path = require('path');
 const execSh = require('exec-sh');
-const fs = require('fs-extra');
+// const fs = require('fs-extra');
 const init = require('../../lib/init');
 
 const dir = path.join(__dirname, 'dirToWatch');
 const mese = path.resolve(__dirname, '../../bin/mese');
 
 beforeAll(() => {
-  fs.removeSync(dir);
+  // fs.removeSync(dir);
   init(dir, () => { });
 });
 

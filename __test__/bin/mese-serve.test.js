@@ -1,7 +1,7 @@
 /*global beforeEach afterEach jest test expect:true*/
 const path = require('path');
 const execSh = require('exec-sh');
-const fs = require('fs-extra');
+// const fs = require('fs-extra');
 const init = require('../../lib/init');
 const getConfig = require('../../lib/getWebpackConfig');
 const build = require('../../lib/build');
@@ -12,7 +12,7 @@ const mese = path.resolve(__dirname, '../../bin/mese');
 beforeAll(() => {
   return new Promise(resolve => {
     // 生成模板文件
-    fs.removeSync(dir);
+    // fs.removeSync(dir);
     init(dir, function () { });
     // 构建
     const mode = 'development';
