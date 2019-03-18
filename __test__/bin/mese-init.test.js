@@ -17,8 +17,6 @@ afterEach(() => {
 test('mese-init should run well', (done) => {
   expect.assertions(1);
   execSh(`node ${mese} init -d ${dir}`, function (err) {
-    console.log(err);
-    console.log(err.stack);
     expect(err).toBeNull();
     done();
   });

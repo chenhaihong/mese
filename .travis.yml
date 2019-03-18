@@ -4,8 +4,8 @@ node_js:
   - "10"
 sudo: true
 before_script:
-  - chmod 777 /home/travis/build/chenhaihong/mese/bin/mese-init
-  - chmod 777 /home/travis/build/chenhaihong/mese/bin/mese-build
-  - chmod 777 /home/travis/build/chenhaihong/mese/bin/mese-watch
+  - chmod 777 ./bin/mese-init
+  - chmod 777 ./bin/mese-build
+  - chmod 777 ./bin/mese-watch
 install:
   - npm install
