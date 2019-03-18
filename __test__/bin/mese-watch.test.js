@@ -16,14 +16,11 @@ afterEach(() => {
 
 jest.setTimeout(20000);
 test('mese-watch should run well', (done) => {
-  expect.assertions(3);
   const child = execSh(`node ${mese} watch -d`, { cwd }, function (err) {
     expect(err).toBeNull();
     done();
   });
-  expect(1).toBe(1);
   setTimeout(function () {
-    expect(1).toBe(1);
     child.kill();
   }, 6000);
 });

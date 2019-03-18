@@ -1,8 +1,8 @@
-<p align="center">
-  <img src="logo.jpg">
-</p>
-<h1 align="center">mese</h1>
-<p align="center">一个简易的 React ssr 框架。</p>
+# mese
+
+[![Build Status](https://travis-ci.org/chenhaihong/mese.svg?branch=master)](https://travis-ci.org/chenhaihong/mese)
+
+一个简易的 React ssr 框架。
 
 # 安装
 

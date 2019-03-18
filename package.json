@@ -9,10 +9,11 @@
   "scripts": {
     "mese-build": "cd example && node ../bin/mese b",
     "mese-watch": "cd example && node ../bin/mese w",
-    "mese-serve": "cd example && node ../bin/mese s",
+    "mese-serve": "cd example && node ../bin/mese s -o",
     "eslint": "eslint ./ --fix",
-    "test": "jest",
-    "jest-coverage": "jest --coverage",
+    "jest": "jest __test__/lib/serve.test.js",
+    "test": "jest --detectOpenHandles",
+    "jest-coverage": "jest --detectOpenHandles --coverage ",
     "publish": "npm publish --access public"
   },
   "repository": {
@@ -30,6 +31,7 @@
   },
   "homepage": "https://github.com/chenhaihong/mese#readme",
   "devDependencies": {
+    "axios": "^0.18.0",
     "eslint": "^5.15.1",
     "eslint-plugin-react": "^7.12.4",
     "jest": "^24.5.0"
