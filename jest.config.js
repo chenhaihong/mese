@@ -7,7 +7,7 @@ module.exports = {
   verbose: true,
   // setupFiles: ['./__test__/setup.js'],
   // testPathIgnorePatterns: ['/node_modules/'],
-  // collectCoverage: true,
+  collectCoverage: true,
   collectCoverageFrom: [
     'lib/**/*.js',
     'bin/**/*.js'
