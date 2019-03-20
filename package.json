@@ -10,7 +10,7 @@
     "mese-build": "cd example && node ../bin/mese b",
     "mese-watch": "cd example && node ../bin/mese w",
     "mese-serve": "cd example && node ../bin/mese s",
-    "test": "jest --detectOpenHandles --silent --runInBand",
+    "test": "jest --no-cache --runInBand",
     "eslint": "eslint ./ --fix",
     "publish": "npm publish --access public"
   },
