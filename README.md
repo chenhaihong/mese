@@ -1,6 +1,9 @@
 # mese
 
+[![npm](https://img.shields.io/npm/v/mese.svg)](https://www.npmjs.com/package/mese)
+[![NPM](https://img.shields.io/npm/l/mese.svg?registry_uri=https%3A%2F%2Fregistry.npmjs.com)](https://www.npmjs.com/package/mese)
 [![Build Status](https://travis-ci.org/chenhaihong/mese.svg?branch=master)](https://travis-ci.org/chenhaihong/mese)
+[![Coverage Status](https://coveralls.io/repos/github/chenhaihong/mese/badge.svg?branch=master)](https://coveralls.io/github/chenhaihong/mese?branch=master)
 
 一个简易的 React ssr 框架。
 
