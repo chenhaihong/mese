@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.org/chenhaihong/mese.svg?branch=master)](https://travis-ci.org/chenhaihong/mese)
 [![Coverage Status](https://coveralls.io/repos/github/chenhaihong/mese/badge.svg?branch=master)](https://coveralls.io/github/chenhaihong/mese?branch=master)
 
-一个简易的 React ssr 框架。
+一个简易的 react ssr 框架。
 
 # 安装
 

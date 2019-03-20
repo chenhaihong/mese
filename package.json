@@ -1,7 +1,7 @@
 {
   "name": "mese",
   "version": "0.0.8",
-  "description": "一个简易的 React ssr 框架。",
+  "description": "一个简易的 react ssr 框架。",
   "main": "index.js",
   "bin": {
     "mese": "bin/mese"
