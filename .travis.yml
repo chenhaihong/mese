@@ -1,8 +1,8 @@
+sudo: false
 language: node_js
 node_js:
   - "11"
   - "10"
-sudo: true
 before_script:
   - chmod 777 ./bin/mese
   - chmod 777 ./bin/mese-build
@@ -11,3 +11,5 @@ before_script:
   - chmod 777 ./bin/mese-watch
 install:
   - npm install
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
