@@ -1,6 +1,6 @@
 {
   "name": "mese",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "一个简易的 react ssr 框架。",
   "main": "index.js",
   "bin": {
@@ -12,7 +12,7 @@
     "mese-serve": "cd example && node ../bin/mese s",
     "test": "jest --no-cache --runInBand",
     "eslint": "eslint ./ --fix",
-    "publish": "npm publish --access public"
+    "pub": "npm publish --access public"
   },
   "repository": {
     "type": "git",
