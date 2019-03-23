@@ -9,8 +9,9 @@ module.exports = {
   // testPathIgnorePatterns: ['/node_modules/'],
   collectCoverage: true,
   collectCoverageFrom: [
+    'index.js',
     'lib/**/*.js',
-    'bin/**/*.js'
+    'bin/**/*'
   ],
   coveragePathIgnorePatterns: [
     '/node_modules/',

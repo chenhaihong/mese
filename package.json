@@ -9,7 +9,8 @@
   "scripts": {
     "mese-build": "cd example && node ../bin/mese b",
     "mese-watch": "cd example && node ../bin/mese w",
-    "mese-serve": "cd example && node ../bin/mese s",
+    "mese-serve": "cd example && node ../bin/mese s -o",
+    "clean-example": "node __test__/clean.js",
     "test": "jest --no-cache --runInBand",
     "eslint": "eslint ./ --fix",
     "pub": "npm publish --access public"
@@ -32,7 +33,8 @@
     "axios": "^0.18.0",
     "eslint": "^5.15.1",
     "eslint-plugin-react": "^7.12.4",
-    "jest": "^24.5.0"
+    "jest": "^24.5.0",
+    "tree-kill": "^1.2.1"
   },
   "dependencies": {
     "@babel/core": "^7.3.4",

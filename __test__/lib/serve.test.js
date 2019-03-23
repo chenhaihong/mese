@@ -4,6 +4,7 @@ const path = require('path');
 const axios = require('axios');
 const adapter = require('axios/lib/adapters/http');
 const fs = require('fs-extra');
+
 const init = require('../../lib/init');
 const getConfig = require('../../lib/getWebpackConfig');
 const build = require('../../lib/build');
@@ -28,18 +29,20 @@ beforeAll(() => {
       const manifest = require(path.join(dir, 'dist/manifest.json'));
       const staticDir = path.join(dir, 'dist');
       const port = 3000;
-      const callback = (_server) => {
+      const success = (_server) => {
         server = _server;
         resolve(server);
       };
-      serve({ index, manifest, staticDir, port, callback });
+      const fail = () => { };
+      serve({ index, manifest, staticDir, port, success, fail });
     });
   });
 });
 
 afterAll(() => {
-  server.close();
-  fs.removeSync(dir);
+  server.close(() => {
+    fs.removeSync(dir);
+  });
 });
 
 jest.setTimeout(30000);
