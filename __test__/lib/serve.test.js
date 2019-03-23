@@ -71,3 +71,22 @@ describe('serve should run well', () => {
     }
   });
 });
+
+
+jest.setTimeout(30000);
+describe('serve should not run well', () => {
+  test('should not start server', (done) => {
+    expect.assertions(1);
+    // 开启服务
+    const index = 'home';
+    const manifest = require(path.join(dir, 'dist/manifest.json'));
+    const staticDir = path.join(dir, 'dist');
+    const port = 3000;
+    const success = () => { };
+    const fail = (err) => { // 3000端口被占用，无法启动，进入错误回调
+      expect(err).toBeTruthy();
+      done();
+    };
+    serve({ index, manifest, staticDir, port, success, fail });
+  });
+});
