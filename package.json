@@ -1,6 +1,6 @@
 {
   "name": "mese",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "一个简易的 react ssr 框架。",
   "main": "index.js",
   "bin": {
