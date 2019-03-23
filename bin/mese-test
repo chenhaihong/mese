@@ -2,13 +2,13 @@
 
 const path = require('path');
 const program = require('commander');
-const init = require('../lib/init');
+const test = require('../lib/test');
 
 program
-  .option('-d, --directory [directory]', '初始化的目录', './')
+  .option('-d, --directory [directory]', '测试的目录', './')
   .parse(process.argv);
 
 const dir = path.resolve(process.cwd(), program.directory);
-init(dir, function () {
-  console.log('[Mese] Initialized successfully.');
+test(dir, function () {
+  console.log('[Mese] Tested successfully.');
 });
