@@ -16,6 +16,7 @@ const mese = path.resolve(__dirname, '../../bin/mese');
 let child;
 beforeAll(() => {
   return new Promise(resolve => {
+    require('../cleanExample');
     fs.removeSync(dir);
     // 生成模板文件
     init(dir, function () { });

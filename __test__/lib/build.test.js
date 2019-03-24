@@ -9,6 +9,7 @@ const getConfig = require('../../lib/getWebpackConfig');
 const dir = path.join(__dirname, 'dirToBuild');
 
 beforeAll(() => {
+  require('../cleanExample');
   fs.removeSync(dir);
   init(dir, () => { });
 });

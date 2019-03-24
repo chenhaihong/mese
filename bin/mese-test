@@ -2,7 +2,7 @@
 
 const path = require('path');
 const program = require('commander');
-const test = require('../lib/test');
+const test = require('../lib/jest');
 
 program
   .option('-d, --directory [directory]', '测试的目录', './')

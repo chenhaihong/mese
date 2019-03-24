@@ -10,9 +10,10 @@
     "mese-build": "cd example && node ../bin/mese b",
     "mese-watch": "cd example && node ../bin/mese w",
     "mese-serve": "cd example && node ../bin/mese s -o",
-    "clean-example": "node __test__/clean.js",
-    "test": "jest --no-cache --runInBand",
+    "clean-example": "node __test__/cleanExample.js",
+    "test": "jest --no-cache --runInBand --config .jest.config.js",
     "eslint": "eslint ./ --fix",
+    "jest-one": "jest __test__/lib/jest.test.js --runInBand",
     "pub": "npm publish --access public"
   },
   "repository": {
@@ -62,6 +63,8 @@
     "commander": "^2.19.0",
     "cookie-parser": "^1.4.4",
     "css-loader": "^2.1.1",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
     "exec-sh": "^0.3.2",
     "express": "^4.16.4",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",

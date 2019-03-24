@@ -9,6 +9,7 @@ const watch = require('../../lib/watch');
 const dir = path.join(__dirname, 'dirToWatch');
 
 beforeAll(() => {
+  require('../cleanExample');
   fse.removeSync(dir);
   init(dir, () => { });
 });

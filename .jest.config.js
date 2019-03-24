@@ -1,12 +1,6 @@
-const transformIgnorePatterns = [
-  '/dist/',
-  'node_modules/[^/]+?/(?!(es|node_modules)/)', // Ignore modules without es dir
-];
 
 module.exports = {
   verbose: true,
-  // setupFiles: ['./__test__/setup.js'],
-  // testPathIgnorePatterns: ['/node_modules/'],
   collectCoverage: true,
   collectCoverageFrom: [
     'index.js',
@@ -23,6 +17,5 @@ module.exports = {
     'dirToMese',
     'dirToGetWebpackConfig',
     'dist'
-  ],
-  transformIgnorePatterns,
+  ]
 };
