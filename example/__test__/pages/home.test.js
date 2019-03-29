@@ -1,9 +1,9 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import home from '../pages/home';
+import { mount } from 'enzyme';
+import home from '../../pages/home';
 
 test('should ', () => {
-  const pageHome = shallow(home);
-
+  const pageHome = mount(home);
+  pageHome.find('.btn').simulate('click');
   expect(1).toBe(1);
 });

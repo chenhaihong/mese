@@ -5,6 +5,7 @@ module.exports = {
   collectCoverageFrom: [
     'index.js',
     'lib/**/*.js',
+    'libJest/**/*.js',
     'bin/**/*'
   ],
   coveragePathIgnorePatterns: [

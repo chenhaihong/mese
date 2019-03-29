@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 const init = require('../../lib/init');
-const _jest = require('../../lib/jest');
+const libJest = require('../../libJest');
 
 const dir = path.join(__dirname, 'dirToJest');
 
@@ -12,16 +12,14 @@ beforeAll(() => {
 });
 
 afterAll(() => {
-  // fs.removeSync(dir);
+  fs.removeSync(dir);
 });
 
 jest.setTimeout(30000);
-describe('lib/jest.js should run well', () => {
-  test('should run well', (done) => {
+describe('libJest/index.js should run well', () => {
+  test('should run well', async () => {
     expect.assertions(1);
-    _jest({ cwd: dir }, (err) => {
-      expect(err).toBeNull();
-      done();
-    });
+    const data = await libJest({ cwd: dir });
+    expect(data).toBeTruthy();
   });
 });

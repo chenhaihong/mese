@@ -1,4 +1,4 @@
-import '@babel/polyfill';
+require('@babel/polyfill');
 
 /* eslint-disable import/first */
 global.requestAnimationFrame =
