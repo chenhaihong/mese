@@ -1,7 +1,7 @@
 # mese
 
 [![npm](https://img.shields.io/npm/v/mese.svg)](https://www.npmjs.com/package/mese)
-[![LICENSE](https://camo.githubusercontent.com/f8e5f328cd5ac4b59476348cb3f13feffd89c97a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d3939364943552d677265656e2e737667)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+[![LICENSE](https://camo.githubusercontent.com/49a7af1a72e77122a5866680bd68a4cd5b703c54/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d4e504c2532302854686525323039393625323050726f686962697465642532304c6963656e7365292d626c75652e737667)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/chenhaihong/mese.svg?branch=master)](https://travis-ci.org/chenhaihong/mese)
 [![codecov](https://codecov.io/gh/chenhaihong/mese/branch/master/graph/badge.svg)](https://codecov.io/gh/chenhaihong/mese)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
@@ -20,6 +20,14 @@ $ npm i -g mese
 ```shell
 $ mkdir demo && cd demo
 $ mese init
+```
+
+# 测试
+
+执行以下命令，会测试项目中的 `*.test.js`、`*.spec.js`。
+
+```shell
+$ mese test
 ```
 
 # 构建 && 启动服务

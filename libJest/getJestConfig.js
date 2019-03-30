@@ -7,21 +7,21 @@ function getJestConfig(rootDir) {
     rootDir, // 待测试项目的根目录
     setupFiles: [
       require.resolve('./setup/shim.js'), // polyfill
-      require.resolve('./setup/setupBrowser.js'), // 配置enzyme的adapter
+      require.resolve('./setup/setupBrowser.js'), // 配置浏览器的变量
       require.resolve('./setup/setupEnzyme.js'), // 配置enzyme的adapter
     ],
     resolver: require.resolve('jest-pnp-resolver'),
     transform: {
-      '\\.(t|j)sx?$': require.resolve('./transformers/jsTransformer'),
+      '\\.jsx?$': require.resolve('./transformers/jsTransformer'),
       '\\.svg$': require.resolve('./transformers/fileTransformer'),
     },
     transformIgnorePatterns: [
       'node_modules'
     ],
-    testMatch: ['**/?*.(spec|test|e2e).(j|t)s?(x)'],
-    moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json'],
+    testMatch: ['**/?*.(spec|test).js?(x)'], // 不会测试test.js，*.test.js、*.spec.js才符合测试要求
+    moduleFileExtensions: ['js', 'jsx', 'json'],
     moduleNameMapper: {
-      '\\.(css|less|sass|scss)$': require.resolve('identity-obj-proxy'),
+      '\\.(css|less)$': require.resolve('identity-obj-proxy'),
       '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
         require.resolve('./mockers/fileMocker.js'),
     },

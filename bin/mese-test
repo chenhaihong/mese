@@ -2,13 +2,11 @@
 
 const path = require('path');
 const program = require('commander');
-const test = require('../lib/jest');
+const test = require('../libJest');
 
 program
-  .option('-d, --directory [directory]', '测试的目录', './')
+  .option('-d, --directory [directory]', '待测试的目录', './')
   .parse(process.argv);
 
 const dir = path.resolve(process.cwd(), program.directory);
-test(dir, function () {
-  console.log('[Mese] Tested successfully.');
-});
+test({ cwd: dir });

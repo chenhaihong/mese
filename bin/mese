@@ -8,14 +8,15 @@ program
   .version(version, '-v, --version')
   .command('init', '初始化项目').alias('i')
   .command('build', '生产模式下构建文件').alias('b')
-  .command('watch', 'watch模式下构建文件').alias('w')
+  .command('watch', '监听模式下构建文件').alias('w')
+  .command('test', '测试').alias('t')
   .command('serve', '启动服务').alias('s')
   .on('--help', function () {
     console.log('');
     console.log('Examples:');
     console.log('  $ mese init');
     console.log('  $ mese build');
-    console.log('  $ mese watch');
+    console.log('  $ mese test');
     console.log('  $ mese build && mese serve --port 3000');
   })
   .parse(process.argv);

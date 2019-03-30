@@ -8,7 +8,6 @@ const dir = path.resolve(__dirname, 'dirToMese');
 const mese = path.resolve(__dirname, '../../bin/mese');
 
 beforeAll(() => {
-  require('../cleanExample');
   fs.removeSync(dir);
   init(dir, () => { });
 });

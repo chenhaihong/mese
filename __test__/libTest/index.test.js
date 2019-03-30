@@ -6,7 +6,6 @@ const libJest = require('../../libJest');
 const dir = path.join(__dirname, 'dirToJest');
 
 beforeAll(() => {
-  require('../cleanExample');
   fs.removeSync(dir);
   init(dir, () => { });
 });

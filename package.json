@@ -1,6 +1,6 @@
 {
   "name": "mese",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "一个简易的 react ssr 框架。",
   "main": "index.js",
   "bin": {
@@ -13,7 +13,7 @@
     "clean-example": "node __test__/cleanExample.js",
     "test": "jest --no-cache --runInBand --testPathIgnorePatterns /example --config .jest.config.js",
     "eslint": "eslint ./ --fix",
-    "jest-one": "jest __test__/libTest/index.test.js --runInBand",
+    "jest-one": "jest __test__/bin/mese-test.test.js --runInBand",
     "pub": "npm publish --access public"
   },
   "repository": {

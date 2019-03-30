@@ -15,7 +15,6 @@ const dir = path.join(__dirname, 'dirToServe');
 let server;
 beforeAll(() => {
   return new Promise(resolve => {
-    require('../cleanExample');
     // 生成模板文件
     fs.removeSync(dir);
     init(dir, function () { });

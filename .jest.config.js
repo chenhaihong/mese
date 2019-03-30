@@ -1,6 +1,9 @@
 
 module.exports = {
   verbose: true,
+  setupFiles: [
+    require.resolve('./__test__/cleanExample.js')
+  ],
   collectCoverage: true,
   collectCoverageFrom: [
     'index.js',

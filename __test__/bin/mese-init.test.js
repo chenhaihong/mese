@@ -7,7 +7,6 @@ const mese = path.resolve(__dirname, '../../bin/mese');
 const dir = path.join(__dirname, 'dirToInit');
 
 beforeAll(() => {
-  require('../cleanExample');
   fs.removeSync(dir);
 });
 

@@ -7,7 +7,6 @@ const getConfig = require('../../lib/getWebpackConfig');
 const dir = path.join(__dirname, 'dirToGetWebpackConfig');
 
 beforeAll(() => {
-  require('../cleanExample');
   fse.removeSync(dir);
   init(dir, () => { });
 });

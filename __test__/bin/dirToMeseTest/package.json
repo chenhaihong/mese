@@ -1,0 +1,11 @@
+{
+  "name": "mese-template",
+  "version": "0.0.1",
+  "description": "mese-template",
+  "author": "erye <erye@tiiit.cn>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenhaihong/mese.git"
+  }
+}

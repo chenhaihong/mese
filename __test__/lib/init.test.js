@@ -6,10 +6,6 @@ const init = require('../../lib/init');
 
 const dir = path.join(__dirname, 'dirToInit');
 
-beforeAll(() => {
-  require('../cleanExample');
-});
-
 afterAll(() => {
   fse.removeSync(dir);
 });
