@@ -13,7 +13,7 @@ beforeAll(() => {
 });
 
 afterAll(() => {
-  // fs.removeSync(dir);
+  fs.removeSync(dir);
 });
 
 jest.setTimeout(30000);

@@ -8,6 +8,7 @@ before_script:
   - chmod 777 ./bin/mese-build
   - chmod 777 ./bin/mese-init
   - chmod 777 ./bin/mese-serve
+  - chmod 777 ./bin/mese-test
   - chmod 777 ./bin/mese-watch
 install:
   - npm install
