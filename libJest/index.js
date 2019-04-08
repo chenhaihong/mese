@@ -1,6 +1,11 @@
 
 module.exports = test;
 
+/**
+ * 测试指定目录的文件
+ * @param {Object} options 包含工作目录cwd的对象
+ * @returns {Promise} 一个jest执行结果的Promise对象
+ */
 function test(options) {
   const { cwd } = options;
   const jestConfig = require('./getJestConfig')(cwd);
@@ -23,7 +28,7 @@ function test(options) {
         }
       })
       .catch(e => {
-        console.log(e);
+        console.log(e); // eslint-disable-line
       });
   });
 }

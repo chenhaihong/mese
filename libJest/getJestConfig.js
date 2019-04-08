@@ -1,6 +1,11 @@
 
 module.exports = getJestConfig;
 
+/**
+ * 获取mese-test命令需要的jest配置
+ * @param {String} rootDir 路径字符串
+ * @returns {Object} 一个jest配置对象
+ */
 function getJestConfig(rootDir) {
   return {
     verbose: true, // 终端上详细地输出各个describe块信息下的test信息

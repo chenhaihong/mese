@@ -1,3 +1,4 @@
+/*global jest beforeAll afterAll describe test expect:true*/
 const path = require('path');
 const fs = require('fs-extra');
 const init = require('../../lib/init');

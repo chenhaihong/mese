@@ -14,3 +14,12 @@ class NotFound extends React.Component {
 }
 
 export default <NotFound />;
+
+export const pageConfig = {
+  body: {
+    beforePageJs: [
+      '<script src="https://cdn.bootcss.com/react/16.8.4/umd/react.development.js"></script>',
+      '<script src="https://cdn.bootcss.com/react-dom/16.8.4/umd/react-dom.development.js"></script>',
+    ].join(''),
+  }
+};

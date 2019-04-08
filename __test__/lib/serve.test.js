@@ -51,14 +51,14 @@ describe('serve should run well', () => {
     expect.assertions(2);
     const res = await axios.get('http://localhost:3000', { adapter });
     expect(res.status).toBe(200);
-    expect(res.data).toMatch(/Hello home!/);
+    expect(res.data).toMatch(/\<\!DOCTYPE html\>/);
   });
 
   test('get /:page should run well', async () => {
     expect.assertions(2);
     const res = await axios.get('http://localhost:3000/home', { adapter });
     expect(res.status).toBe(200);
-    expect(res.data).toMatch(/Hello home!/);
+    expect(res.data).toMatch(/\<\!DOCTYPE html\>/);
   });
 
   test('get page-unknown should run well', async () => {
