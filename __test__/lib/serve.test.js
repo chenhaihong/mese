@@ -26,6 +26,7 @@ beforeAll(() => {
     build(config, function () {
       // 开启服务
       const index = 'home';
+      const apiFiles = require(meseUrl).api.map(item => path.join(dir, item));
       const manifest = require(path.join(dir, 'dist/manifest.json'));
       const staticDir = path.join(dir, 'dist');
       const port = 3000;
@@ -34,7 +35,7 @@ beforeAll(() => {
         resolve(server);
       };
       const fail = () => { };
-      serve({ index, manifest, staticDir, port, success, fail });
+      serve({ index, apiFiles, manifest, staticDir, port, success, fail });
     });
   });
 });
@@ -51,14 +52,14 @@ describe('serve should run well', () => {
     expect.assertions(2);
     const res = await axios.get('http://localhost:3000', { adapter });
     expect(res.status).toBe(200);
-    expect(res.data).toMatch(/Hello home!/);
+    expect(res.data).toMatch(/\<\!DOCTYPE html\>/);
   });
 
   test('get /:page should run well', async () => {
     expect.assertions(2);
     const res = await axios.get('http://localhost:3000/home', { adapter });
     expect(res.status).toBe(200);
-    expect(res.data).toMatch(/Hello home!/);
+    expect(res.data).toMatch(/\<\!DOCTYPE html\>/);
   });
 
   test('get page-unknown should run well', async () => {
@@ -70,6 +71,20 @@ describe('serve should run well', () => {
       expect(error.response.data).toMatch(/404/);
     }
   });
+
+  // 测试 apis 服务
+  test('get apis should run well', async () => {
+    expect.assertions(6);
+    const res1 = await axios.get('http://localhost:3000/get/json', { adapter });
+    const res2 = await axios.post('http://localhost:3000/post/pureFunction', { adapter });
+    const res3 = await axios.get('http://localhost:3000/get/delayFunction', { adapter });
+    expect(res1.status).toBe(200);
+    expect(res2.status).toBe(200);
+    expect(res3.status).toBe(200);
+    expect(res1.data).toEqual({ success: true, title: 'mese' });
+    expect(res2.data).toEqual({ success: true });
+    expect(res3.data).toEqual({ success: true });
+  });
 });
 
 
@@ -79,6 +94,8 @@ describe('serve should not run well', () => {
     expect.assertions(1);
     // 开启服务
     const index = 'home';
+    const meseUrl = path.join(dir, 'mese.config.js');
+    const apiFiles = require(meseUrl).api.map(item => path.join(dir, item));
     const manifest = require(path.join(dir, 'dist/manifest.json'));
     const staticDir = path.join(dir, 'dist');
     const port = 3000;
@@ -87,6 +104,6 @@ describe('serve should not run well', () => {
       expect(err).toBeTruthy();
       done();
     };
-    serve({ index, manifest, staticDir, port, success, fail });
+    serve({ index, apiFiles, manifest, staticDir, port, success, fail });
   });
 });

@@ -1,4 +1,5 @@
-import React from 'react';
+/*global test expect:true*/
+import React from 'react'; // eslint-disable-line
 import { mount } from 'enzyme';
 import home from '../../pages/home';
 
