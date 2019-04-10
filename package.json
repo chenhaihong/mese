@@ -80,7 +80,6 @@
     "jest": "^24.5.0",
     "jest-pnp-resolver": "^1.2.1",
     "jsdom": "^14.0.0",
-    "json-loader": "^0.5.7",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "morgan": "^1.9.1",
