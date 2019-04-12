@@ -1,29 +1,19 @@
-#!/usr/bin/env node
 
 const path = require('path');
 const fse = require('fs-extra');
-const opn = require('opn');
-const program = require('commander');
-const serve = require('../lib/serve');
-
-program
-  .option('-c, --config [config]', '配置文件', 'mese.config.js')
-  .option('-s, --static-dir [staticDir]', '存放构建结果的目录', 'dist')
-  .option('-p, --port [port]', '设置端口号', 3000)
-  .option('-o, --open', '自动打开首页')
-  .parse(process.argv);
+const serve = require('./serve');
 
 const cwd = process.cwd();
-const meseUrl = path.join(cwd, program.config);
-const staticDir = path.join(cwd, program.staticDir);
-const port = program.port;
-const open = program.open;
+const meseUrl = path.join(cwd, process.env.config || 'mese.config.js');
+const staticDir = path.join(cwd, process.env.staticDir || 'dist');
+const port = process.env.port || 3000;
 
 checkIsAllReadyOrExit();
 
 const index = getIndex();
 const apiFiles = getApiFiles();
 const manifest = getManifest();
+
 serve({
   index,
   apiFiles,
@@ -31,7 +21,6 @@ serve({
   staticDir,
   port,
   success() {
-    open && opn(`http://localhost:${port}`);
     console.log(`[Mese] Listening on port ${port}`);
   },
   fail: onError
@@ -48,7 +37,7 @@ function checkIsAllReadyOrExit() {
   }
 
   // （2）检测：页面数组不能为空
-  const pages = require(meseUrl).pages;
+  const pages = variableRequire(meseUrl).pages;
   if (!pages) {
     console.log('[Mese] pages not found.');
     process.exit(-1);
@@ -67,7 +56,7 @@ function checkIsAllReadyOrExit() {
  * @returns {String} 首页文件的名称
  */
 function getIndex() {
-  const pages = require(meseUrl).pages;
+  const pages = variableRequire(meseUrl).pages;
   return path.parse(pages[0]).name;
 }
 
@@ -76,7 +65,7 @@ function getIndex() {
  * @returns {Object} manifest.json的内容
  */
 function getApiFiles() {
-  const apiFiles = require(meseUrl).api || [];
+  const apiFiles = variableRequire(meseUrl).api || [];
   return apiFiles.map(item => path.join(cwd, item));
 }
 
@@ -86,7 +75,7 @@ function getApiFiles() {
  */
 function getManifest() {
   const url = path.join(staticDir, 'manifest.json');
-  return require(url);
+  return variableRequire(url);
 }
 
 /**
@@ -115,3 +104,19 @@ function onError(error) {
       throw error;
   }
 }
+
+/**
+ * Return the expected module.
+ *
+ * @param {string} variablePath
+ * @return {Object}
+ */
+function variableRequire(variablePath) {
+  // let r = variableRequire.require;
+  // if (!r) {
+  //   r = typeof __webpack_require__ !== 'undefined' ? __webpack_require__ : eval('require');
+  // }
+  // return r(variablePath);
+  return require(variablePath);
+}
+// variableRequire.require = null;

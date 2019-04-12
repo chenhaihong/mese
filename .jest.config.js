@@ -7,9 +7,14 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     'index.js',
-    'lib/**/*.js',
-    'libJest/**/*.js',
-    'bin/**/*'
+    'src/**/*.js',
+    'bin/mese',
+    'bin/mese',
+    'bin/mese-init',
+    'bin/mese-build',
+    'bin/mese-watch',
+    'bin/mese-test',
+    'bin/mese-serve'
   ],
   coveragePathIgnorePatterns: [
     '/node_modules/',

@@ -15,7 +15,7 @@
 const path = require('path');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const constants = require('./constants');
+const constants = require('../helper/constants');
 
 const [APP_CLIENT, APP_NODE, SSR_SERVER] = [0, 1, 2]; // 三种配置类型
 const extractClientCSSPlugin = new ExtractTextWebpackPlugin({
@@ -42,6 +42,7 @@ function getWebpackConfig(mode, meseUrl, outputPath) {
   return [
     // app-client-config
     {
+      name: 'APP_CLIENT',
       target: 'web',
       mode,
       devtool: 'source-map',
@@ -58,6 +59,7 @@ function getWebpackConfig(mode, meseUrl, outputPath) {
     },
     // app-node-config
     {
+      name: 'APP_NODE',
       target: 'node',
       mode,
       devtool: false,
@@ -69,9 +71,10 @@ function getWebpackConfig(mode, meseUrl, outputPath) {
     },
     // ssr-server-config
     {
+      name: 'SSR_SERVER',
       target: 'node',
       mode,
-      devtool: false,
+      devtool: 'source-map',
       entry: getEntry(SSR_SERVER),
       output: getOutput(SSR_SERVER),
       module: getModule(SSR_SERVER), // 各种类型文件对应的loader
@@ -99,7 +102,7 @@ function getEntry(type) {
       });
       break;
     case SSR_SERVER:
-      entry.server = path.join(__dirname, 'serve.js');
+      entry.server = path.join(__dirname, 'server.js');
       break;
   }
   return entry;

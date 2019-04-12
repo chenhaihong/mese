@@ -13,6 +13,8 @@
     "mese-build": "cd example && node ../bin/mese b",
     "mese-watch": "cd example && node ../bin/mese w",
     "mese-serve": "cd example && node ../bin/mese s -o",
+    "server": "cd example && node ../lib/server",
+    "ssr-server": "cd example && node ./dist/server",
     "clean-example": "node __test__/cleanExample.js",
     "test": "jest --no-cache --runInBand --testPathIgnorePatterns /example --config .jest.config.js",
     "eslint": "eslint ./ --fix",
