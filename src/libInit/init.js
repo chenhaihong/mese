@@ -10,6 +10,6 @@ module.exports = init;
  * @returns {void}
  */
 function init(dir, callback) {
-  fse.copySync(path.join(__dirname, '../example'), dir);
-  callback();
+  fse.copySync(path.join(__dirname, '../../example'), dir);
+  callback && callback();
 }

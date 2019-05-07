@@ -2,9 +2,9 @@
 
 const path = require('path');
 const fs = require('fs-extra');
-const init = require('../../lib/init');
-const build = require('../../lib/build');
-const getConfig = require('../../lib/getWebpackConfig');
+const init = require('../../src/libInit/init');
+const build = require('../../src/libPack/build');
+const getWebpackConfig = require('../../src/libPack/getWebpackConfig');
 
 const dir = path.join(__dirname, 'dirToBuild');
 
@@ -18,12 +18,12 @@ afterAll(() => {
 });
 
 jest.setTimeout(20000);
-test('build should run well', (done) => {
+test('[libPack] build() should run well', (done) => {
   expect.assertions(2);
   const mode = 'development';
   const meseUrl = path.join(dir, 'mese.config.js');
   const outputPath = path.join(dir, 'dist');
-  const config = getConfig(mode, meseUrl, outputPath);
+  const config = getWebpackConfig(mode, meseUrl, outputPath);
   build(config, function (err, stats) {
     expect(err).toBeNull();
     expect(stats.hasErrors()).toBeFalsy();

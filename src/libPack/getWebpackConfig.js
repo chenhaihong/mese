@@ -9,7 +9,7 @@
  *                      `ReactDOMServer.renderToStaticMarkup`方法会用到它。
  * (3) ssr-server-config: 这个配置用于构建出`web server`的js文件，格式为`server.js`，
  *                        通过`node server.js`或`pm2 start server.js`
-*                         启动web服务的时候会用到它。
+ *                        启动web服务的时候会用到它。
  */
 
 const path = require('path');
@@ -31,10 +31,12 @@ module.exports = getWebpackConfig;
  * 获取构建配置
  * @param {String} mode 构建模式
  * @param {String} meseUrl mese配置地址，绝对路径
- * @param {String} outputPath 存放构建结果的目录路径，绝对路径
+ * @param {String} outputPath 存放构建结果的目录路径，绝对路径。
  * @returns {Array} 一个包含2个构建配置对象的数组
  */
 function getWebpackConfig(mode, meseUrl, outputPath) {
+  // outputPath参数废弃，使用mese配置里的输出选项。
+
   // initialize local variable
   const { dir } = path.parse(meseUrl); // mese文件的存放目录
   _meseDir = dir, _meseUrl = meseUrl, _outputPath = outputPath;

@@ -12,5 +12,8 @@ module.exports = {
     './apis/json.js',
     './apis/pureFunction.js',
     './apis/delayFunction.js'
-  ]
+  ],
+  webpackOption: {
+    output: '', // 构建配置选项
+  },
 };

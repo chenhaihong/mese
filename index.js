@@ -2,7 +2,7 @@
  * 导出方法
  */
 
-const init = require('./lib/init');
+const init = require('./src/libInit/init');
 const build = require('./lib/build');
 const watch = require('./lib/watch');
 const serve = require('./lib/serve');

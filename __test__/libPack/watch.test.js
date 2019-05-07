@@ -2,9 +2,9 @@
 
 const path = require('path');
 const fse = require('fs-extra');
-const init = require('../../lib/init');
-const getConfig = require('../../lib/getWebpackConfig');
-const watch = require('../../lib/watch');
+const init = require('../../src/libInit/init');
+const watch = require('../../src/libPack/watch');
+const getWebpackConfig = require('../../src/libPack/getWebpackConfig');
 
 const dir = path.join(__dirname, 'dirToWatch');
 
@@ -18,12 +18,12 @@ afterAll(() => {
 });
 
 jest.setTimeout(20000);
-test('watch should run well', (done) => {
+test('[libPack] watch() should run well', (done) => {
   expect.assertions(4);
   const mode = 'development';
   const meseUrl = path.join(dir, 'mese.config.js');
   const outputPath = path.join(dir, 'dist');
-  const config = getConfig(mode, meseUrl, outputPath);
+  const config = getWebpackConfig(mode, meseUrl, outputPath);
   watch(config, (err, stats, watching) => {
     expect(err).toBeNull();
     expect(stats.hasErrors()).toBeFalsy();

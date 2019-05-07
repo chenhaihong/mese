@@ -1,3 +1,7 @@
+/**
+ * Node.js API的使用文档 https://webpack.docschina.org/api/node/
+ */
+
 const webpack = require('webpack');
 
 module.exports = watch;
@@ -15,6 +19,8 @@ function watch(config, callback) {
     aggregateTimeout: 300,
     ignored: /node_modules/,
   };
+  // 错误处理 https://webpack.docschina.org/api/node/#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86-error-handling-
+  // stats 统计信息 https://webpack.docschina.org/configuration/stats
   const watching = compiler.watch(watchOptions, (err, stats) => {
     callback(err, stats, watching);
   });

@@ -1,8 +1,9 @@
 /*global beforeAll afterAll describe expect test:true*/
 const path = require('path');
 const fse = require('fs-extra');
-const init = require('../../lib/init');
-const getConfig = require('../../lib/getWebpackConfig');
+const init = require('../../src/libInit/init');
+const getWebpackConfig = require('../../src/libPack/getWebpackConfig');
+
 
 const dir = path.join(__dirname, 'dirToGetWebpackConfig');
 
@@ -15,13 +16,13 @@ afterAll(() => {
   fse.removeSync(dir);
 });
 
-describe('getWebpackConfig() should have desired properties', () => {
+describe('[libPack] getWebpackConfig() should have desired properties', () => {
   const mode = 'development';
   const meseUrl = path.join(dir, 'mese.config.js');
   const outputPath = path.join(dir, 'dist');
 
   test('client config should have desired properties', () => {
-    const config = getConfig(mode, meseUrl, outputPath);
+    const config = getWebpackConfig(mode, meseUrl, outputPath);
     const clientConfig = config[0];
     expect(clientConfig).toHaveProperty('target');
     expect(clientConfig).toHaveProperty('mode');
@@ -38,7 +39,7 @@ describe('getWebpackConfig() should have desired properties', () => {
   });
 
   test('server config should have desired properties', () => {
-    const config = getConfig(mode, meseUrl, outputPath);
+    const config = getWebpackConfig(mode, meseUrl, outputPath);
     const serverConfig = config[1];
     expect(serverConfig).toHaveProperty('target');
     expect(serverConfig).toHaveProperty('mode');

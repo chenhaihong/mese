@@ -14,7 +14,7 @@ afterAll(() => {
   fs.removeSync(dir);
 });
 
-test('mese-init should run well', (done) => {
+test('The command `mese init` should run well', (done) => {
   expect.assertions(1);
   execSh(`node ${mese} init -d ${dir}`, function (err) {
     expect(err).toBeNull();
