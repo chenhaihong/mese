@@ -8,3 +8,4 @@ dirToMese
 dirToGetWebpackConfig
 dist
 package-lock.json
+lerna-debug.log

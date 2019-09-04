@@ -1,15 +1,11 @@
 {
   "private": true,
-  "name": "mese",
+  "workspaces": [
+    "packages/*"
+  ],
+  "name": "mese-monorepo",
   "version": "0.3.0",
-  "description": "一个简易的 react ssr 框架。",
-  "main": "index.js",
-  "bin": {
-    "mese": "bin/mese"
-  },
-  "engines": {
-    "node": ">=8.9.0"
-  },
+  "description": "一个简易的 react ssr 框架",
   "scripts": {
     "mese-build": "cd example && node ../bin/mese b",
     "mese-watch": "cd example && node ../bin/mese w",
