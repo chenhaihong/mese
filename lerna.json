@@ -4,5 +4,30 @@
   "packages": [
     "packages/*"
   ],
+  "command": {
+    "create": {
+      "homepage": "https://github.com/chenhaihong/mese",
+      "license": "MIT",
+      "registry": "https://registry.npmjs.org/"
+    },
+    "version": {
+      "exact": true
+    },
+    "add": {
+      "exact": true
+    },
+    "publish": {
+      "ignoreChanges": [
+        "*.md"
+      ],
+      "message": "chore(release): publish"
+    }
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "bootstrapConfig": {
+    "ignore": []
+  },
   "version": "0.0.10"
 }

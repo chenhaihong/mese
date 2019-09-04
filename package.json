@@ -22,16 +22,6 @@
     "type": "git",
     "url": "git+https://github.com/chenhaihong/mese.git"
   },
-  "keywords": [
-    "react",
-    "react ssr"
-  ],
-  "author": "erye <erye@tiiit.cn>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/chenhaihong/mese/issues"
-  },
-  "homepage": "https://github.com/chenhaihong/mese#readme",
   "devDependencies": {
     "axios": "^0.18.0",
     "eslint": "^5.15.1",
