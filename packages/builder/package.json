@@ -1,0 +1,48 @@
+{
+  "name": "@mese/builder",
+  "version": "0.0.10",
+  "description": "> TODO: description",
+  "author": "erye <erye@tiiit.cn>",
+  "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/builder#readme",
+  "license": "MIT",
+  "main": "lib/builder.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "typings": "types/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenhaihong/mese.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/chenhaihong/mese/issues"
+  },
+  "dependencies": {
+    "@babel/core": "7.10.2",
+    "@mese/babel-preset-react": "0.0.10",
+    "autoprefixer": "9.8.0",
+    "babel-loader": "8.1.0",
+    "css-loader": "3.5.3",
+    "fs-extra": "9.0.0",
+    "html-loader": "1.1.0",
+    "html-webpack-plugin": "4.3.0",
+    "isomorphic-style-loader": "5.1.0",
+    "less": "3.11.2",
+    "less-loader": "6.1.0",
+    "mini-css-extract-plugin": "0.9.0",
+    "postcss-loader": "3.0.0",
+    "webpack": "4.43.0",
+    "webpack-manifest-plugin": "2.2.0",
+    "webpack-merge": "4.2.2"
+  }
+}

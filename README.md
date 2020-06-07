@@ -1,11 +1,9 @@
 # mese
 
 [![npm](https://img.shields.io/npm/v/mese.svg)](https://www.npmjs.com/package/mese)
-[![LICENSE](https://camo.githubusercontent.com/41215df7ff78cefe41536bf897fe1c7e55b10bd2/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d416e74692532303939362d626c75652e737667)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/chenhaihong/mese.svg?branch=master)](https://travis-ci.org/chenhaihong/mese)
 [![codecov](https://codecov.io/gh/chenhaihong/mese/branch/master/graph/badge.svg)](https://codecov.io/gh/chenhaihong/mese)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
-
 
 一个简易的 react ssr 框架。
 
@@ -44,14 +42,15 @@ $ mese serve --port 8080 --open # 使用8080端口，自动打开首页
 ```js
 module.exports = {
   pages: [
-    './pages/home.js', // 数组第一个作为首页，文件名称是页面名称
-    './pages/404.js', // 名称为404的页面将作为404页面
-    './pages/500.js' // 名称为500的页面将作为500页面
+    "./pages/home.js", // 数组第一个作为首页，文件名称是页面名称
+    "./pages/404.js", // 名称为404的页面将作为404页面
+    "./pages/500.js", // 名称为500的页面将作为500页面
   ],
-  api: [ // 自定义api
-    './apis/json.js',
-    './apis/pureFunction.js',
-    './apis/delayFunction.js'
-  ] 
+  api: [
+    // 自定义api
+    "./apis/json.js",
+    "./apis/pureFunction.js",
+    "./apis/delayFunction.js",
+  ],
 };
 ```

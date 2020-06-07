@@ -1,17 +1,11 @@
 {
-  "name": "@mese/mese",
+  "name": "@mese/create",
   "version": "0.0.10",
-  "description": "> TODO: description",
+  "description": "创建模板",
   "author": "erye <erye@tiiit.cn>",
-  "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/mese#readme",
+  "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/create#readme",
   "license": "MIT",
-  "main": "lib/mese.js",
-  "bin": {
-    "mese": "bin/mese"
-  },
-  "engines": {
-    "node": ">=8.9.0"
-  },
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -31,5 +25,8 @@
   },
   "bugs": {
     "url": "https://github.com/chenhaihong/mese/issues"
+  },
+  "dependencies": {
+    "fs-extra": "9.0.0"
   }
 }

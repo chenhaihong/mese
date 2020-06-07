@@ -1,7 +1,12 @@
-'use strict';
+/*global expect test:true*/
 
-const mese = require('..');
+const mese = require("..");
 
-describe('mese', () => {
-    it('needs tests');
+test("mese should have desired properties", () => {
+  expect(mese).toHaveProperty("init");
+  expect(mese).toHaveProperty("build");
+  expect(mese).toHaveProperty("watch");
+  expect(mese).toHaveProperty("serve");
+  expect(mese).toHaveProperty("test");
+  expect(mese).toHaveProperty("getWebpackConfig");
 });

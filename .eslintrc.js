@@ -1,44 +1,46 @@
+// https://www.npmjs.com/package/eslint
+// https://www.npmjs.com/package/eslint-plugin-react
 module.exports = {
   env: {
     browser: true,
     es6: true,
-    node: true
+    node: true,
   },
-  extends: ["eslint:recommended", "plugin:react/recommended"],
+  extends: ['eslint:recommended', 'plugin:react/recommended'],
   globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly"
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
   },
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
     ecmaVersion: 2018,
-    sourceType: "module"
+    sourceType: 'module',
   },
-  plugins: ["react"],
+  plugins: ['react'],
   rules: {
-    indent: ["error", 2],
-    "linebreak-style": ["error", "unix"],
-    quotes: ["error", "single"],
-    semi: ["error", "always"],
-    "require-jsdoc": [
-      "error",
+    indent: ['error', 2],
+    'linebreak-style': ['error', 'unix'],
+    quotes: ['error', 'single'],
+    semi: ['error', 'always'],
+    'require-jsdoc': [
+      'error',
       {
         require: {
           FunctionDeclaration: true,
           MethodDefinition: false,
           ClassDeclaration: false,
           ArrowFunctionExpression: false,
-          FunctionExpression: false
-        }
-      }
+          FunctionExpression: false,
+        },
+      },
     ],
-    "valid-jsdoc": "error"
+    'valid-jsdoc': 'error',
   },
   settings: {
     react: {
-      version: "16.8"
-    }
-  }
+      version: 'detect',
+    },
+  },
 };
