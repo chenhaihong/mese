@@ -7,26 +7,27 @@ const Preparer = require("./helper/Preparer");
 const ExpressMaker = require("./helper/ExpressMaker");
 
 class Server {
-  constructor({ meseConfigUrl, staticDir, host, port, success, fail }) {
-    Preparer.checkIsAllReadyOtherwiseExit(meseConfigUrl, staticDir);
+  constructor({ staticDir, host, port, success, fail }) {
+    const preparer = new Preparer(staticDir);
+    preparer.checkIsAllReadyOtherwiseExit();
 
-    const app = new ExpressMaker({
-      indexName: Preparer.getIndexName(meseConfigUrl),
-      apiFiles: Preparer.getApiFiles(meseConfigUrl),
-      manifest: Preparer.getManifest(staticDir),
-      staticDir,
-    }).make();
-    const server = http.createServer(app);
-    server.on("error", (error) => {
-      fail && fail(error);
-    });
-    server.on("listening", function () {
-      success && success(port);
-    });
-    const options = { port, host };
-    server.listen(options);
+    // const app = new ExpressMaker({
+    //   indexName: Preparer.getIndexName(staticDir),
+    //   apiFiles: Preparer.getApiFiles(staticDir),
+    //   manifest: Preparer.getManifest(staticDir),
+    //   staticDir,
+    // }).make();
+    // const server = http.createServer(app);
+    // server.on("error", (error) => {
+    //   fail && fail(error);
+    // });
+    // server.on("listening", function () {
+    //   success && success(port);
+    // });
+    // const options = { port, host };
+    // server.listen(options);
 
-    return server;
+    // return server;
   }
 
   static startUpSuccessfully(port) {

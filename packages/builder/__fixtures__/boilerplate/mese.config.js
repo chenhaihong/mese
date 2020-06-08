@@ -2,16 +2,19 @@
  * 配置文件
  */
 
-const path = require("path");
-
 module.exports = {
   pages: [
-    "./pages/home.js", // 数组第一个作为首页，文件名称是页面名称
-    "./pages/404.js", // 名称为404的页面将作为404页面
-    "./pages/500.js", // 名称为500的页面将作为500页面
+    { path: "/index", component: "/pages/home.js" }, // 数组第一个作为首页，文件名称是path的pascalCase格式
+    { path: "/404", component: "/pages/404.js" }, // 作为404页面
+    { path: "/500", component: "/pages/500.js" }, // 作为500页面
   ],
-  api: [],
+  apiFiles: [
+    "/api/json.js",
+    "/api/pureFunction.js",
+    "/api/delayFunction.js",
+  ],
+  // TODO 自定义的构建配置选项
   webpackOption: {
-    output: "", // 构建配置选项
+    output: {},
   },
 };

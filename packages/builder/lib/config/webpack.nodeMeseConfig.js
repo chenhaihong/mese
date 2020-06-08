@@ -5,7 +5,7 @@
  * @Author: erye
  * @Date: 2020-06-02 18:40:35
  * @Last Modified by: erye
- * @Last Modified time: 2020-06-07 23:06:59
+ * @Last Modified time: 2020-06-08 18:16:09
  */
 
 const merge = require("webpack-merge");
@@ -14,14 +14,14 @@ const _common = require("./cell/webpack.common");
 
 module.exports = ({ mode, meseConfigUrl, outputPath }) => {
   return merge(_common(), {
-    name: "MESE_CONFIG_NODE",
+    name: "NODE_MESE_CONFIG",
     target: "node",
     mode,
     devtool: false,
     entry: meseConfigUrl,
     output: {
       path: outputPath,
-      filename: "meseConfig.node.js",
+      filename: "mese.config.node.js",
       libraryTarget: "commonjs2",
     },
   });

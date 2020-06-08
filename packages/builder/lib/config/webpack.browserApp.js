@@ -6,15 +6,15 @@
  * @Author: erye
  * @Date: 2020-06-02 17:54:13
  * @Last Modified by: erye
- * @Last Modified time: 2020-06-07 22:34:01
+ * @Last Modified time: 2020-06-09 00:51:14
  */
-
+const { resolve } = require("path");
 const merge = require("webpack-merge");
 
 const _common = require("./cell/webpack.common");
 const _entry = require("./cell/webpack.entry");
-const _jsx = require("./cell/webpack.jsx.js");
-const _optimizeStyle = require("./cell/webpack.optimize.style");
+const _jsx = require("./cell/webpack.jsx");
+const _optimizeStyle = require("./cell/webpack.optimizeStyle");
 const _manifest = require("./cell/webpack.manifest");
 
 module.exports = ({ mode, meseConfigUrl, outputPath }) => {
@@ -27,12 +27,12 @@ module.exports = ({ mode, meseConfigUrl, outputPath }) => {
     _optimizeStyle(isProd),
     _manifest(),
     {
-      name: "APP_BROWSER",
+      name: "BROWSER_APP",
       target: "web",
       mode,
       devtool: isProd ? false : "source-map",
       output: {
-        path: outputPath,
+        path: resolve(outputPath, "browser"),
         filename: "[name].[hash:6].js",
         chunkFilename: "[name].[hash:6].js",
         library: "mese_[name]",

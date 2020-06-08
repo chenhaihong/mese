@@ -4,7 +4,7 @@ const { pascalCase } = require("pascal-case");
 
 module.exports = (meseConfigUrl) => {
   return {
-    entry: getEntry(meseConfigUrl),
+    entry: getEntryApi(meseConfigUrl),
   };
 };
 
@@ -13,17 +13,13 @@ module.exports = (meseConfigUrl) => {
  * @param {String} meseConfigUrl 配置文件的地址
  * @returns {Object} 一个用于获取构建入口配置的对象
  */
-function getEntry(meseConfigUrl) {
+function getEntryApi(meseConfigUrl) {
   const entry = {};
   const { dir: appRoot } = parse(meseConfigUrl);
 
-  const { pages } = require(meseConfigUrl);
-  pages.forEach(({ path, component }) => {
-    const [pascalCasedRoute, pageComponentUrl] = [
-      pascalCase(path), // 1 将化后的路由作为entry的key
-      join(appRoot, component), // 2 拼接出页面组件的绝对路径
-    ];
-    entry[pascalCasedRoute] = pageComponentUrl;
+  const { apiFiles } = require(meseConfigUrl);
+  apiFiles.forEach((path) => {
+    entry[pascalCase(path)] = join(appRoot, path);
   });
   return entry;
 }
