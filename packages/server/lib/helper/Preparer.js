@@ -13,13 +13,18 @@ class Preparer {
     // 目录、文件路径
     this.meseAppDir = meseAppDir; // 存放builder构建出来文件的目录
     this.nodeMeseConfigUrl = resolve(meseAppDir, "mese.config.node.js");
-    this.manifestUrl = resolve(meseAppDir, "manifest.json");
+    this.browserAppManifestUrl = resolve(
+      meseAppDir,
+      "browserApp", // 存放浏览器环境上的脚本的一个目录
+      "manifest.json"
+    );
 
     // 相关对象
-    this.manifest = null; // meseConfig对象
-    this.apiFiles = null; // api文件列表
-    this.routePathSet = null; // 页面路由集合
-    this.pagesSet = null; // 页面列表集合
+    this.nodeMeseConfig = null;
+    this.browserAppManifest = null; // meseConfig对象
+    // 衍生的对象
+    this.routePathSet = null; // 页面路由的集合
+    this.apiMap = null; // api的map对象
   }
 
   /**
@@ -29,7 +34,7 @@ class Preparer {
    * 3 检测构建出来的manifest.json文件
    */
   checkIsAllReadyOtherwiseExit() {
-    const { nodeMeseConfigUrl, manifestUrl } = this;
+    const { nodeMeseConfigUrl, browserAppManifestUrl } = this;
 
     // （1）检测：必须存在mese配置
     if (!fse.pathExistsSync(nodeMeseConfigUrl)) {
@@ -45,81 +50,108 @@ class Preparer {
     }
 
     // （3）检测：必须存在manifest.json文件
-    if (!fse.pathExistsSync(manifestUrl)) {
+    if (!fse.pathExistsSync(browserAppManifestUrl)) {
       console.log("[Mese] manifest.json not found.");
       process.exit(-1);
     }
   }
 
   /**
-   * 获取manifest.json的内容
+   * 获取mese.config.node.js的内容
    */
-  getManifest() {
-    if (!this.manifest) {
-      const { meseAppDir } = this;
-      const url = join(meseAppDir, "manifest.json");
-      this.manifest = compatibleRequire(url);
+  getNodeMeseConfig() {
+    if (!this.nodeMeseConfig) {
+      this.nodeMeseConfig = compatibleRequire(this.nodeMeseConfigUrl);
     }
-    return this.manifest;
+    return this.nodeMeseConfig;
   }
 
   /**
-   * 从mese.config.node.js中，计算出页面在manifest.json中的名称
+   * 获取manifest.json的内容
    */
-  getManifestPageName(routePath) {
+  getBrowserAppManifest() {
+    if (!this.browserAppManifest) {
+      this.browserAppManifest = compatibleRequire(this.browserAppManifestUrl);
+    }
+    return this.browserAppManifest;
+  }
+
+  /**
+   * 获取路由的pascal case字符串，
+   * 它作为{meseAppDir}/browserApp/manifest.json中的名称
+   */
+  getPascalCasePageName(routePath) {
     return pascalCase(routePath);
   }
 
   /**
-   * 从mese.config.node.js中，计算出首页在manifest.json中的名称
+   * 计算出首页的pascal case字符串，
+   * 它作为{meseAppDir}/browserApp/manifest.json中的名称
    */
-  getManifestPageIndexName() {
-    const { nodeMeseConfigUrl } = this;
-    const { pages } = compatibleRequire(nodeMeseConfigUrl);
+  getPascalCasePageNameOfIndex() {
+    const { pages } = this.getNodeMeseConfig();
     const { path } = pages[0];
-    return this.getManifestPageName(path);
+    return this.getPascalCasedPageName(path);
   }
 
   /**
-   * 获取api文件列表，meseAppDir上层目录里面寻找。
+   * 获取api文件列表，{meseAppDir}/api目录里面寻找。
    */
   getApiFiles() {
-    const { meseAppDir, nodeMeseConfigUrl } = this;
-    const { api = [] } = compatibleRequire(nodeMeseConfigUrl);
-    return api.map((item) => join(meseAppDir, "..", item));
+    const { meseAppDir } = this;
+    const { api = [] } = this.getNodeMeseConfig();
+    // api文件存放在api目录里
+    return api.map((item) => join(meseAppDir, "api", item));
   }
 
   /**
-   * 包含这个页面[name]的结果
-   * @param {String} pageName 页面的名称
-   * @returns {Boolean} 是否包含指定页面的结果
+   * 获取api的map对象
    */
-  hasPage(pageName) {
-    let { pagesSet } = this;
-    if (!pagesSet) {
-      pagesSet = new Set();
-      const { pages } = this.getManifest();
-      const keys = Object.keys(pages);
-      keys.forEach((item) => {
-        // item example: home.js home.css
-        const name = item.split(".")[0];
-        pagesSet.add(name);
+  getApiMap() {
+    let { apiMap } = this;
+    if (!apiMap) {
+      // （1）api目录下所有的js文件，把他们全部合并到apiMap里
+      apiMap = new Map();
+      const files = this.getApiFiles();
+      files.forEach((file) => {
+        const apiItem = compatibleRequire(file);
+        for (const [routePath, resultConfig] of apiItem) {
+          apiMap.set(routePath, resultConfig);
+        }
       });
-      this.pagesSet = pagesSet;
+
+      this.apiMap = apiMap;
     }
-    return pagesSet.has(pageName);
+    return this.apiMap;
+  }
+
+  /**
+   * 判断在pages配置中，是否存在这个路由
+   */
+  hasRoutePath(routePath) {
+    let { routePathSet } = this;
+    if (!routePathSet) {
+      routePathSet = new Set();
+      const { pages } = this.getNodeMeseConfig();
+      pages.forEach(({ path }) => {
+        routePathSet.add(path);
+      });
+      this.routePathSet = routePathSet;
+    }
+    return routePathSet.has(routePath);
   }
 
   /**
    * 获取页面的关联文件
-   * @param {String} pageName 页面的名称
+   * @param {String} pascalCaseName 页面路由的pascalCase字符串
    * @returns {Object} 关联的文件
    */
-  getAssociatedFiles(pageName) {
+  getAssociatedFiles(pascalCaseName) {
+    const [{ meseAppDir }, nodeMeseConfig] = [this, this.getNodeMeseConfig()];
     return {
-      js: "/" + _manifest[`${pageName}.js`],
-      css: "/" + _manifest[`${pageName}.css`],
-      node: join(_meseAppDir, `${pageName}.node.js`),
+      js: "/" + nodeMeseConfig[`${pascalCaseName}.js`],
+      css: "/" + nodeMeseConfig[`${pascalCaseName}.css`],
+      node: join(meseAppDir, `${pascalCaseName}.node.js`),
     };
   }
 }

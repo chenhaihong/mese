@@ -1,4 +1,4 @@
-const a = {
+module.exports = {
   "/get/delayFunction": {
     method: "get",
     async result() {
@@ -17,5 +17,3 @@ const a = {
     },
   },
 };
-
-module.exports = { ...a };

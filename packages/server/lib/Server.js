@@ -7,27 +7,22 @@ const Preparer = require("./helper/Preparer");
 const ExpressMaker = require("./helper/ExpressMaker");
 
 class Server {
-  constructor({ staticDir, host, port, success, fail }) {
-    const preparer = new Preparer(staticDir);
+  constructor({ meseAppDir, host, port, success, fail }) {
+    const preparer = new Preparer(meseAppDir);
     preparer.checkIsAllReadyOtherwiseExit();
 
-    // const app = new ExpressMaker({
-    //   indexName: Preparer.getIndexName(staticDir),
-    //   apiFiles: Preparer.getApiFiles(staticDir),
-    //   manifest: Preparer.getManifest(staticDir),
-    //   staticDir,
-    // }).make();
-    // const server = http.createServer(app);
-    // server.on("error", (error) => {
-    //   fail && fail(error);
-    // });
-    // server.on("listening", function () {
-    //   success && success(port);
-    // });
-    // const options = { port, host };
-    // server.listen(options);
+    const app = new ExpressMaker(preparer).make();
+    const server = http.createServer(app);
+    server.on("listening", function () {
+      success && success(port);
+    });
+    server.on("error", (error) => {
+      fail && fail(error);
+    });
+    const options = { port, host };
+    server.listen(options);
 
-    // return server;
+    return server;
   }
 
   static startUpSuccessfully(port) {
@@ -46,11 +41,9 @@ class Server {
       case "EACCES":
         console.error(bind + " requires elevated privileges");
         process.exit(1);
-      // break;
       case "EADDRINUSE":
         console.error(bind + " is already in use");
         process.exit(1);
-      // break;
       default:
         throw e;
     }

@@ -2,9 +2,9 @@ const ReactDOMServer = require("react-dom/server");
 
 const compatibleRequire = require("./compatibleRequire");
 
-class HtmlStringMaker {
-  static makeHtmlString(pageName, associatedFiles) {
-    let cache = HtmlStringMaker.cache.get(pageName);
+class MarkupMaker {
+  static makeString(pascalCasePageName, associatedFiles) {
+    let cache = MarkupMaker.cacheMap.get(pascalCasePageName);
     if (cache) return cache;
 
     const { js, css, node } = associatedFiles;
@@ -14,7 +14,7 @@ class HtmlStringMaker {
       afterPageCSS,
       beforePageJs,
       afterPageJs,
-    } = HtmlStringMaker.transformPageConfig(pageConfig);
+    } = MarkupMaker.transformPageConfig(pageConfig);
     cache = `<!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -28,12 +28,12 @@ class HtmlStringMaker {
   <script src="${js}"></script>
   ${afterPageJs}
   <script>
-    ReactDOM.hydrate(mese_${pageName}.default, document.getElementById('root'));
+    ReactDOM.hydrate(mese_${pascalCasePageName}.default, document.getElementById('root'));
   </script>
 </body>
 </html>`;
 
-    HtmlStringMaker.cache.set(pageName, cache);
+    MarkupMaker.cacheMap.set(pascalCasePageName, cache);
     return cache;
   }
 
@@ -60,6 +60,6 @@ class HtmlStringMaker {
     return { beforePageCSS, afterPageCSS, beforePageJs, afterPageJs };
   }
 }
-HtmlStringMaker.cache = new Map();
+MarkupMaker.cacheMap = new Map();
 
-module.exports = HtmlStringMaker;
+module.exports = MarkupMaker;
