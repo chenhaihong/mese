@@ -95,6 +95,22 @@ class Preparer {
   }
 
   /**
+   * 计算出404页面的pascal case字符串，
+   * 它作为{meseAppDir}/browserApp/manifest.json中的名称
+   */
+  getPascalCasePageNameOf404() {
+    return "404";
+  }
+
+  /**
+   * 计算出500页面的pascal case字符串，
+   * 它作为{meseAppDir}/browserApp/manifest.json中的名称
+   */
+  getPascalCasePageNameOf500() {
+    return "500";
+  }
+
+  /**
    * 获取api文件列表，{meseAppDir}/api目录里面寻找。
    */
   getApiFiles() {

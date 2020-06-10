@@ -3,18 +3,26 @@ const ReactDOMServer = require("react-dom/server");
 const compatibleRequire = require("./compatibleRequire");
 
 class MarkupMaker {
-  static makeString(pascalCasePageName, associatedFiles) {
-    let cache = MarkupMaker.cacheMap.get(pascalCasePageName);
+  /**
+   * 构造方法
+   */
+  constructor() {
+    this.cacheMap = new Map();
+  }
+
+  makeString(pascalCasePageName, associatedFiles) {
+    let cache = this.cacheMap.get(pascalCasePageName);
     if (cache) return cache;
 
     const { js, css, node } = associatedFiles;
-    const { default: application, pageConfig } = compatibleRequire(node); // Critical dependency: the request of a dependency is an expression
+    const { default: nodeApp, pageConfig } = compatibleRequire(node);
     const {
+      onMemoryCache, // 该页面启用内存缓存
       beforePageCSS,
       afterPageCSS,
       beforePageJs,
       afterPageJs,
-    } = MarkupMaker.transformPageConfig(pageConfig);
+    } = this.transformPageConfig(pageConfig);
     cache = `<!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -23,17 +31,17 @@ class MarkupMaker {
   ${afterPageCSS}
 </head>
 <body>
-  <div id="root">${ReactDOMServer.renderToStaticMarkup(application)}</div>
+  <div id="root">${ReactDOMServer.renderToStaticMarkup(nodeApp)}</div>
   ${beforePageJs}
   <script src="${js}"></script>
   ${afterPageJs}
   <script>
-    ReactDOM.hydrate(mese_${pascalCasePageName}.default, document.getElementById('root'));
+    ReactDOM.hydrate(Mese${pascalCasePageName}.default, document.getElementById('root'));
   </script>
 </body>
 </html>`;
 
-    MarkupMaker.cacheMap.set(pascalCasePageName, cache);
+    if (onMemoryCache) this.cacheMap.set(pascalCasePageName, cache);
     return cache;
   }
 
@@ -42,24 +50,39 @@ class MarkupMaker {
    *
    * @param {Object|null} pageConfig 当前页面的配置对象
    * @returns {Object} 一个格式化后的配置对象
-   *
-   * @private
    */
-  static transformPageConfig(pageConfig) {
-    let beforePageCSS = "",
-      afterPageCSS = "",
-      beforePageJs = "",
-      afterPageJs = "";
+  transformPageConfig(pageConfig) {
+    let [
+      onMemoryCache,
+      beforePageCSS,
+      afterPageCSS,
+      beforePageJs,
+      afterPageJs,
+    ] = [false, "", "", "", ""];
     if (pageConfig) {
       const { head = {}, body = {} } = pageConfig;
-      beforePageCSS = head.beforePageCSS || "";
-      afterPageCSS = head.afterPageCSS || "";
-      beforePageJs = body.beforePageJs || "";
-      afterPageJs = body.afterPageJs || "";
+      [
+        onMemoryCache,
+        beforePageCSS,
+        afterPageCSS,
+        beforePageJs,
+        afterPageJs,
+      ] = [
+        pageConfig.onMemoryCache || false,
+        head.beforePageCSS || "",
+        head.afterPageCSS || "",
+        body.beforePageJs || "",
+        body.afterPageJs || "",
+      ];
     }
-    return { beforePageCSS, afterPageCSS, beforePageJs, afterPageJs };
+    return {
+      onMemoryCache,
+      beforePageCSS,
+      afterPageCSS,
+      beforePageJs,
+      afterPageJs,
+    };
   }
 }
-MarkupMaker.cacheMap = new Map();
 
 module.exports = MarkupMaker;

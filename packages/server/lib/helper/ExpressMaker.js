@@ -3,7 +3,6 @@ const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 
 const MarkupMaker = require("./MarkupMaker");
-const compatibleRequire = require("./compatibleRequire");
 
 class ExpressMaker {
   /**
@@ -13,6 +12,7 @@ class ExpressMaker {
   constructor(preparer) {
     this.app = express();
     this.preparer = preparer;
+    this.markupMaker = new MarkupMaker();
   }
 
   make() {
@@ -29,13 +29,15 @@ class ExpressMaker {
 
   _useDefault() {
     const { app } = this;
+    // 1 for logging tiny messages
     app.use(logger("tiny"));
-    app.use(express.json()); // for parsing application/json
-    // for parsing application/x-www-form-urlencoded
-    // parse the URL-encoded data with
-    //    the querystring library (when false)
-    //    or the qs library (when true).
+    // 2 for parsing application/json
+    app.use(express.json());
+    // 3 for parsing application/x-www-form-urlencoded
+    //   parse the URL-encoded data with the querystring library (when false)
+    //   parse the URL-encoded data with the qs library (when true).
     app.use(express.urlencoded({ extended: false }));
+    // 4 for parsing cookie
     app.use(cookieParser());
   }
 
@@ -50,7 +52,7 @@ class ExpressMaker {
   }
 
   _useIndex() {
-    const { app, preparer } = this;
+    const { app, preparer, markupMaker } = this;
     // 首页
     app.get("/", function (req, res, next) {
       res.set({
@@ -59,7 +61,7 @@ class ExpressMaker {
       });
       const pascalCasePageName = preparer.getPascalCasePageNameOfIndex();
       const associatedFiles = preparer.getAssociatedFiles(pascalCasePageName);
-      const htmlString = MarkupMaker.makeString(
+      const htmlString = markupMaker.makeString(
         pascalCasePageName,
         associatedFiles
       );
@@ -68,7 +70,7 @@ class ExpressMaker {
   }
 
   _usePages() {
-    const { app, preparer } = this;
+    const { app, preparer, markupMaker } = this;
     // 其他静态页面
     app.use(function pagesHandler(req, res, next) {
       const { path } = req;
@@ -82,7 +84,7 @@ class ExpressMaker {
       });
       const pascalCasePageName = preparer.getPascalCasePageName(path);
       const associatedFiles = preparer.getAssociatedFiles(pascalCasePageName);
-      const htmlString = MarkupMaker.makeString(
+      const htmlString = markupMaker.makeString(
         pascalCasePageName,
         associatedFiles
       );
@@ -123,11 +125,15 @@ class ExpressMaker {
 
   _useError() {
     // error handler
-    this.app.use(function (err, req, res, next) {
+    const { app, preparer, markupMaker } = this;
+    app.use(function (err, req, res, next) {
       const { status = 500 } = err;
-      const pascalCasePageName = status === 404 ? "404" : "500";
+      const pascalCasePageName =
+        status === 404
+          ? preparer.getPascalCasePageNameOf404()
+          : preparer.getPascalCasePageNameOf500();
       const associatedFiles = preparer.getAssociatedFiles(pascalCasePageName);
-      const htmlString = MarkupMaker.makeString(
+      const htmlString = markupMaker.makeString(
         pascalCasePageName,
         associatedFiles
       );
