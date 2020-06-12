@@ -19,7 +19,7 @@ class Server {
     server.on("error", (error) => {
       fail && fail(error);
     });
-    const options = { port, host };
+    const options = { host, port };
     server.listen(options);
 
     return server;

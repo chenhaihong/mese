@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const { join } = require('path');
-const { copySync } = require('fs-extra');
+const { join } = require("path");
+const { copySync } = require("fs-extra");
 
 module.exports = meseCreate;
 
@@ -12,6 +12,6 @@ module.exports = meseCreate;
  * @returns {void}
  */
 function meseCreate(dirTarget, callback) {
-  copySync(join(__dirname, '..', 'boilerplate'), dirTarget);
+  copySync(join(__dirname, "..", "boilerplate/sc-mese-app"), dirTarget);
   callback && callback();
 }

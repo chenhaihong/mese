@@ -1,14 +1,18 @@
 /*global beforeAll afterAll jest expect test:true*/
 
-const { resolve } = require("path");
+const { join } = require("path");
 const fse = require("fs-extra");
 
 const watch = require("../lib/watch");
 const getWebpackConfig = require("../lib/getWebpackConfig");
 
-const dirBoilerplate = resolve(__dirname, "..", "__fixtures__/boilerplate");
-const dirDistDev = resolve(dirBoilerplate, "dist-watch-dev");
-const dirDistProd = resolve(dirBoilerplate, "dist-watch-prod");
+const dirBoilerplate = join(
+  __dirname,
+  "../../../",
+  "__temp_fixtures__/sc-mese-app"
+);
+const dirDistDev = join(dirBoilerplate, "dist-dev-MeseBuilder.watch");
+const dirDistProd = join(dirBoilerplate, "dist-prod-MeseBuilder.watch");
 
 beforeAll(() => {
   fse.emptyDirSync(dirDistDev);
@@ -16,8 +20,8 @@ beforeAll(() => {
 });
 
 afterAll(() => {
-  fse.emptyDirSync(dirDistDev);
-  fse.emptyDirSync(dirDistProd);
+  // fse.emptyDirSync(dirDistDev);
+  // fse.emptyDirSync(dirDistProd);
 });
 
 jest.setTimeout(20e3);
@@ -27,7 +31,7 @@ describe("@mese/builder/lib/watch", () => {
 
     const [mode, meseConfigUrl, outputPath] = [
       "development",
-      resolve(dirBoilerplate, "mese.config.js"),
+      join(dirBoilerplate, "mese.config.js"),
       dirDistDev,
     ];
     const config = getWebpackConfig({ mode, meseConfigUrl, outputPath });
@@ -46,7 +50,7 @@ describe("@mese/builder/lib/watch", () => {
 
     const [mode, meseConfigUrl, outputPath] = [
       "production",
-      resolve(dirBoilerplate, "mese.config.js"),
+      join(dirBoilerplate, "mese.config.js"),
       dirDistProd,
     ];
     const config = getWebpackConfig({ mode, meseConfigUrl, outputPath });

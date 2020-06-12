@@ -25,5 +25,19 @@
   },
   "bugs": {
     "url": "https://github.com/chenhaihong/mese/issues"
+  },
+  "dependencies": {
+    "cookie-parser": "1.4.5",
+    "express": "4.17.1",
+    "fs-extra": "9.0.1",
+    "morgan": "1.10.0",
+    "pascal-case": "3.1.1"
+  },
+  "peerDependencies": {
+    "react-dom": "16.13.1"
+  },
+  "devDependencies": {
+    "axios": "0.19.2",
+    "react-dom": "16.13.1"
   }
 }

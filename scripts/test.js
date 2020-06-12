@@ -20,8 +20,9 @@ console.info("路径:", dirTarget);
 
 const args = [
   "--no-cache",
-  "--runInBand", //顺序执行
+  "--runInBand", // 顺序执行
   "--passWithNoTests",
+  "--silent", // Prevent tests from printing messages through the console.
   "--config",
   resolve(dirRoot, "jest.config.js"),
   `--rootDir`,

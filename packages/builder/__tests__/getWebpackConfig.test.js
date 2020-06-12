@@ -3,7 +3,11 @@ const { join } = require("path");
 
 const getWebpackConfig = require("../lib/getWebpackConfig");
 
-const dirBoilerplate = join(__dirname, "..", "__fixtures__/boilerplate");
+const dirBoilerplate = join(
+  __dirname,
+  "../../../",
+  "__temp_fixtures__/sc-mese-app"
+);
 
 describe("@mese/builder/lib/getWebpackConfig", () => {
   const [mode, meseConfigUrl, outputPath] = [

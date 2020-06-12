@@ -1,5 +1,9 @@
 node_modules
 coverage
+__temp_fixtures__
+package-lock.json
+lerna-debug.log
+
 dirToBuild
 dirToInit
 dirToServe
@@ -7,5 +11,3 @@ dirToWatch
 dirToMese
 dirToGetWebpackConfig
 dist
-package-lock.json
-lerna-debug.log

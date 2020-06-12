@@ -18,11 +18,9 @@ class MarkupMaker {
     const { default: nodeApp, pageConfig } = compatibleRequire(node);
     const {
       onMemoryCache, // 该页面启用内存缓存
-      beforePageCSS,
-      afterPageCSS,
-      beforePageJs,
-      afterPageJs,
-    } = this.transformPageConfig(pageConfig);
+      head: { beforePageCSS, afterPageCSS },
+      body: { beforePageJs, afterPageJs },
+    } = this.makeUpPageConfig(pageConfig);
     cache = `<!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -46,41 +44,21 @@ class MarkupMaker {
   }
 
   /**
-   * 格式化当前页面的配置对象
+   * 填充当前页面的配置对象，补充默认值
    *
-   * @param {Object|null} pageConfig 当前页面的配置对象
+   * @param {Object|undefined} pageConfig 当前页面的配置对象
    * @returns {Object} 一个格式化后的配置对象
    */
-  transformPageConfig(pageConfig) {
-    let [
-      onMemoryCache,
-      beforePageCSS,
-      afterPageCSS,
-      beforePageJs,
-      afterPageJs,
-    ] = [false, "", "", "", ""];
-    if (pageConfig) {
-      const { head = {}, body = {} } = pageConfig;
-      [
-        onMemoryCache,
-        beforePageCSS,
-        afterPageCSS,
-        beforePageJs,
-        afterPageJs,
-      ] = [
-        pageConfig.onMemoryCache || false,
-        head.beforePageCSS || "",
-        head.afterPageCSS || "",
-        body.beforePageJs || "",
-        body.afterPageJs || "",
-      ];
-    }
+  makeUpPageConfig(pageConfig = {}) {
+    let [onMemoryCache = false, head = {}, body = {}] = pageConfig;
+    const [defaultHead, defaultBody] = [
+      { beforePageCSS: "", afterPageCSS: "" },
+      { beforePageJs: "", afterPageJs: "" },
+    ];
     return {
       onMemoryCache,
-      beforePageCSS,
-      afterPageCSS,
-      beforePageJs,
-      afterPageJs,
+      head: { ...defaultHead, ...head },
+      body: { ...defaultBody, ...body },
     };
   }
 }

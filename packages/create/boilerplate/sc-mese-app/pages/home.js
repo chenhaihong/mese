@@ -22,9 +22,11 @@ class Home extends React.Component {
 
 export default <Home />;
 
+// 服务端执行
 export async function getGlobalData(data) {}
 
 export const pageConfig = {
+  onMemoryCache: false,
   head: {
     beforePageCSS: [
       '<meta charset="utf-8">',
@@ -41,5 +43,4 @@ export const pageConfig = {
     ].join(""),
     afterPageJs: "",
   },
-  onMemoryCache: false,
 };

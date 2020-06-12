@@ -17,7 +17,7 @@
   "dependencies": {
     "eslint": "^7.1.0",
     "eslint-plugin-react": "^7.20.0",
-    "fs-extra": "^9.0.0",
+    "fs-extra": "9.0.1",
     "jest": "^26.0.1",
     "lerna": "^3.22.0",
     "minimist": "^1.2.5"

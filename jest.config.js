@@ -5,9 +5,10 @@ const ROOT = resolve(__dirname);
 module.exports = {
   verbose: true,
   testEnvironment: "node",
-  setupFiles: [
+  globalSetup: resolve(ROOT, "scripts/globalSetup/setup-lastest-fixtures.js"), // triggered once before all test suites
+  setupFilesAfterEnv: [
+    // run once per test file
     resolve(ROOT, "scripts/setup/setup-unit-test-timeout.js"),
-    resolve(ROOT, "scripts/setup/setup-clean-fixture.js"),
   ],
   collectCoverage: true,
   collectCoverageFrom: [

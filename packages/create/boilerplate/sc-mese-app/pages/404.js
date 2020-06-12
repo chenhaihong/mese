@@ -1,6 +1,6 @@
-import './common.less';
+import "./common.less";
 
-import React from 'react';
+import React from "react";
 
 class NotFound extends React.Component {
   render() {
@@ -16,10 +16,11 @@ class NotFound extends React.Component {
 export default <NotFound />;
 
 export const pageConfig = {
+  onMemoryCache: true,
   body: {
     beforePageJs: [
       '<script src="https://cdn.bootcss.com/react/16.8.4/umd/react.development.js"></script>',
       '<script src="https://cdn.bootcss.com/react-dom/16.8.4/umd/react-dom.development.js"></script>',
-    ].join(''),
-  }
+    ].join(""),
+  },
 };
