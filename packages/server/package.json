@@ -5,7 +5,7 @@
   "author": "erye <erye@tiiit.cn>",
   "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/server#readme",
   "license": "MIT",
-  "main": "lib/server.js",
+  "main": "lib/Server.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -37,6 +37,7 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
+    "@mese/builder": "0.0.10",
     "axios": "0.19.2",
     "react-dom": "16.13.1"
   }

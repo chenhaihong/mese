@@ -45,7 +45,7 @@ class ExpressMaker {
     const { app, preparer } = this;
     // 1 静态资源服务
     app.use(
-      express.static(preparer.meseAppDir, {
+      express.static(preparer.browserAppDir, {
         maxAge: "355d", // 355天浏览器缓存
       })
     );
@@ -74,7 +74,7 @@ class ExpressMaker {
     // 其他静态页面
     app.use(function pagesHandler(req, res, next) {
       const { path } = req;
-      if (!preparer.hasRoutePath(path)) {
+      if (!preparer.hasPagePath(path)) {
         return next();
       }
 
@@ -137,6 +137,7 @@ class ExpressMaker {
         pascalCasePageName,
         associatedFiles
       );
+      res.status(status);
       res.send(htmlString);
     });
   }

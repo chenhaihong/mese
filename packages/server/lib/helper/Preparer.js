@@ -13,17 +13,15 @@ class Preparer {
     // 目录、文件路径
     this.meseAppDir = meseAppDir; // 存放builder构建出来文件的目录
     this.nodeMeseConfigUrl = resolve(meseAppDir, "mese.config.node.js");
-    this.browserAppManifestUrl = resolve(
-      meseAppDir,
-      "browserApp", // 存放浏览器环境上的脚本的一个目录
-      "manifest.json"
-    );
+    this.browserAppDir = resolve(meseAppDir, "browserApp"); // 存放浏览器环境上的应用的一个目录
+    this.nodeAppDir = resolve(meseAppDir, "nodeApp"); // 存放node环境上的pages应用的一个目录
+    this.browserAppManifestUrl = resolve(this.browserAppDir, "manifest.json");
 
     // 相关对象
     this.nodeMeseConfig = null;
     this.browserAppManifest = null; // meseConfig对象
     // 衍生的对象
-    this.routePathSet = null; // 页面路由的集合
+    this.pagePathSet = null; // 页面路由的集合
     this.apiMap = null; // api的map对象
   }
 
@@ -91,7 +89,7 @@ class Preparer {
   getPascalCasePageNameOfIndex() {
     const { pages } = this.getNodeMeseConfig();
     const { path } = pages[0];
-    return this.getPascalCasedPageName(path);
+    return this.getPascalCasePageName(path);
   }
 
   /**
@@ -115,9 +113,9 @@ class Preparer {
    */
   getApiFiles() {
     const { meseAppDir } = this;
-    const { api = [] } = this.getNodeMeseConfig();
+    const { apiFiles = [] } = this.getNodeMeseConfig();
     // api文件存放在api目录里
-    return api.map((item) => join(meseAppDir, "api", item));
+    return apiFiles.map((item) => join(meseAppDir, "api", pascalCase(item)));
   }
 
   /**
@@ -131,7 +129,8 @@ class Preparer {
       const files = this.getApiFiles();
       files.forEach((file) => {
         const apiItem = compatibleRequire(file);
-        for (const [routePath, resultConfig] of apiItem) {
+        const entries = Object.entries(apiItem);
+        for (const [routePath, resultConfig] of entries) {
           apiMap.set(routePath, resultConfig);
         }
       });
@@ -144,17 +143,18 @@ class Preparer {
   /**
    * 判断在pages配置中，是否存在这个路由
    */
-  hasRoutePath(routePath) {
-    let { routePathSet } = this;
-    if (!routePathSet) {
-      routePathSet = new Set();
+  hasPagePath(routePath) {
+    let { pagePathSet } = this;
+    if (!pagePathSet) {
+      pagePathSet = new Set();
       const { pages } = this.getNodeMeseConfig();
       pages.forEach(({ path }) => {
-        routePathSet.add(path);
+        pagePathSet.add(path);
       });
-      this.routePathSet = routePathSet;
+      pagePathSet.add("/");
+      this.pagePathSet = pagePathSet;
     }
-    return routePathSet.has(routePath);
+    return pagePathSet.has(routePath);
   }
 
   /**
@@ -163,11 +163,14 @@ class Preparer {
    * @returns {Object} 关联的文件
    */
   getAssociatedFiles(pascalCaseName) {
-    const [{ meseAppDir }, nodeMeseConfig] = [this, this.getNodeMeseConfig()];
+    const [{ nodeAppDir }, browserAppManifest] = [
+      this,
+      this.getBrowserAppManifest(),
+    ];
     return {
-      js: "/" + nodeMeseConfig[`${pascalCaseName}.js`],
-      css: "/" + nodeMeseConfig[`${pascalCaseName}.css`],
-      node: join(meseAppDir, `${pascalCaseName}.node.js`),
+      js: join("/", browserAppManifest[`${pascalCaseName}.js`]),
+      css: join("/", browserAppManifest[`${pascalCaseName}.css`]),
+      node: join(nodeAppDir, `${pascalCaseName}.node.js`),
     };
   }
 }

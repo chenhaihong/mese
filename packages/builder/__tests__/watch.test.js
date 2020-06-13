@@ -20,8 +20,8 @@ beforeAll(() => {
 });
 
 afterAll(() => {
-  // fse.emptyDirSync(dirDistDev);
-  // fse.emptyDirSync(dirDistProd);
+  fse.emptyDirSync(dirDistDev);
+  fse.emptyDirSync(dirDistProd);
 });
 
 jest.setTimeout(20e3);

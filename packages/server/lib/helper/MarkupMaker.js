@@ -50,7 +50,7 @@ class MarkupMaker {
    * @returns {Object} 一个格式化后的配置对象
    */
   makeUpPageConfig(pageConfig = {}) {
-    let [onMemoryCache = false, head = {}, body = {}] = pageConfig;
+    let { onMemoryCache = false, head = {}, body = {} } = pageConfig;
     const [defaultHead, defaultBody] = [
       { beforePageCSS: "", afterPageCSS: "" },
       { beforePageJs: "", afterPageJs: "" },
