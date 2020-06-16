@@ -60,11 +60,21 @@ describe("@mese/server 正常用例", () => {
   });
 
   test("应该正常访问 pages", async () => {
-    expect.assertions(2);
+    expect.assertions(4);
 
-    const res = await axios.get(`http://${host}:${port}/index`, { adapter });
-    expect(res.status).toBe(200);
-    expect(res.data).toMatch(/<!DOCTYPE html>/);
+    const [url1, url2] = [
+      `http://${host}:${port}/index`,
+      `http://${host}:${port}/pageWithPreloadedState`,
+    ];
+    const res1 = await axios.get(url1, { adapter });
+    const res2 = await axios.get(url2, { adapter });
+
+    expect(res1.status).toBe(200);
+    expect(res2.status).toBe(200);
+    expect(res1.data).toMatch(/<!DOCTYPE html>/);
+    expect(res2.data).toMatch(/<!DOCTYPE html>/);
+
+    console.log(res2.data);
   });
 
   test("应该正常访问 404", async () => {

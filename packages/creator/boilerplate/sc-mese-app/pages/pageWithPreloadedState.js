@@ -3,8 +3,9 @@ import "./common.less";
 import React from "react";
 
 export function createPage({ path, query, preloadedStateString }) {
+  console.log(path, query, preloadedStateString);
   if (preloadedStateString) {
-    preloadedState = JOSN.parse(preloadedStateString);
+    const preloadedState = JSON.parse(preloadedStateString);
   }
   return (
     <div className="app">
@@ -14,16 +15,15 @@ export function createPage({ path, query, preloadedStateString }) {
   );
 }
 
-export async function getPreloadedStateString(nodeFetch) {
+export async function getPreloadedStateString({ nodeFetch }) {
   // 服务端执行，预加载数据
   // 使用的node-fetch
-  return await nodeFetch("http://lohost:3000/get/json", {
+  return await nodeFetch("http://localhost:3000/get/json", {
     method: "GET",
-  });
-  // .then((res) => res.json());
+  }).then((res) => res.text());
 }
 
-export async function getPageConfig(nodeFetch) {
+export async function getPageConfig({ nodeFetch }) {
   return {
     onMemoryCache: false,
     head: {

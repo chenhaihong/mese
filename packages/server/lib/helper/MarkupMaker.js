@@ -86,7 +86,9 @@ class MarkupMaker {
    * 因为原生JSON.stringify()性能稍差，所以换用这种性能高一点的方式
    */
   _fastJsonStringify({ path, query, preloadedStateString }) {
-    return `{"path":"${path}","query":"${query}","preloadedStateString":'${preloadedStateString}'}`;
+    return `{"path":"${path}","query":${JSON.stringify(
+      query
+    )},"preloadedStateString":'${preloadedStateString}'}`;
   }
 
   /**
