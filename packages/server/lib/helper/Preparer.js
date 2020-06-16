@@ -111,7 +111,7 @@ class Preparer {
   /**
    * 获取api文件列表，{meseAppDir}/api目录里面寻找。
    */
-  getApiFiles() {
+  _getApiFiles() {
     const { meseAppDir } = this;
     const { apiFiles = [] } = this.getNodeMeseConfig();
     // api文件存放在api目录里
@@ -126,7 +126,7 @@ class Preparer {
     if (!apiMap) {
       // （1）api目录下所有的js文件，把他们全部合并到apiMap里
       apiMap = new Map();
-      const files = this.getApiFiles();
+      const files = this._getApiFiles();
       files.forEach((file) => {
         const apiItem = compatibleRequire(file);
         const entries = Object.entries(apiItem);

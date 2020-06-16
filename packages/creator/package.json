@@ -1,11 +1,11 @@
 {
-  "name": "@mese/create",
+  "name": "@mese/creator",
   "version": "0.0.10",
   "description": "创建模板",
   "author": "erye <erye@tiiit.cn>",
-  "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/create#readme",
+  "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/creator#readme",
   "license": "MIT",
-  "main": "lib/index.js",
+  "main": "lib/creator.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"

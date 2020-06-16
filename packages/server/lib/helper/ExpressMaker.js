@@ -54,16 +54,20 @@ class ExpressMaker {
   _useIndex() {
     const { app, preparer, markupMaker } = this;
     // 首页
-    app.get("/", function (req, res, next) {
+    app.get("/", async function (req, res, next) {
       res.set({
         "Content-Type": "text/html",
         "Cache-Control": "public, max-age=0",
       });
       const pascalCasePageName = preparer.getPascalCasePageNameOfIndex();
-      const associatedFiles = preparer.getAssociatedFiles(pascalCasePageName);
-      const htmlString = markupMaker.makeString(
+      const options = {
+        associatedFiles: preparer.getAssociatedFiles(pascalCasePageName),
+        path: req.path,
+        query: req.query,
+      };
+      const htmlString = await markupMaker.makeString(
         pascalCasePageName,
-        associatedFiles
+        options
       );
       res.send(htmlString);
     });
@@ -72,7 +76,7 @@ class ExpressMaker {
   _usePages() {
     const { app, preparer, markupMaker } = this;
     // 其他静态页面
-    app.use(function pagesHandler(req, res, next) {
+    app.use(async function pagesHandler(req, res, next) {
       const { path } = req;
       if (!preparer.hasPagePath(path)) {
         return next();
@@ -83,10 +87,14 @@ class ExpressMaker {
         "Cache-Control": "public, max-age=0",
       });
       const pascalCasePageName = preparer.getPascalCasePageName(path);
-      const associatedFiles = preparer.getAssociatedFiles(pascalCasePageName);
-      const htmlString = markupMaker.makeString(
+      const options = {
+        associatedFiles: preparer.getAssociatedFiles(pascalCasePageName),
+        path: req.path,
+        query: req.query,
+      };
+      const htmlString = await markupMaker.makeString(
         pascalCasePageName,
-        associatedFiles
+        options
       );
       res.send(htmlString);
     });
@@ -126,16 +134,20 @@ class ExpressMaker {
   _useError() {
     // error handler
     const { app, preparer, markupMaker } = this;
-    app.use(function (err, req, res, next) {
+    app.use(async function (err, req, res, next) {
       const { status = 500 } = err;
       const pascalCasePageName =
         status === 404
           ? preparer.getPascalCasePageNameOf404()
           : preparer.getPascalCasePageNameOf500();
-      const associatedFiles = preparer.getAssociatedFiles(pascalCasePageName);
-      const htmlString = markupMaker.makeString(
+      const options = {
+        associatedFiles: preparer.getAssociatedFiles(pascalCasePageName),
+        path: req.path,
+        query: req.query,
+      };
+      const htmlString = await markupMaker.makeString(
         pascalCasePageName,
-        associatedFiles
+        options
       );
       res.status(status);
       res.send(htmlString);

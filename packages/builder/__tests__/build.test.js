@@ -14,15 +14,15 @@ const dirBoilerplate = join(
 const dirDistDev = join(dirBoilerplate, "dist-dev-MeseBuilder.build");
 const dirDistProd = join(dirBoilerplate, "dist-prod-MeseBuilder.build");
 
-beforeAll(() => {
-  fse.emptyDirSync(dirDistDev);
-  fse.emptyDirSync(dirDistProd);
-});
+// beforeAll(() => {
+//   fse.emptyDirSync(dirDistDev);
+//   fse.emptyDirSync(dirDistProd);
+// });
 
-afterAll(() => {
-  fse.emptyDirSync(dirDistDev);
-  fse.emptyDirSync(dirDistProd);
-});
+// afterAll(() => {
+//   fse.emptyDirSync(dirDistDev);
+//   fse.emptyDirSync(dirDistProd);
+// });
 
 jest.setTimeout(20e3);
 describe("@mese/builder/lib/build", () => {

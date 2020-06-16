@@ -1,9 +1,7 @@
-"use strict";
-
 const { join } = require("path");
 const { copySync } = require("fs-extra");
 
-module.exports = meseCreate;
+module.exports = create;
 
 /**
  * 拷贝模板文件到指定的目录
@@ -11,7 +9,7 @@ module.exports = meseCreate;
  * @param {Function} callback 拷贝完成后，执行的函数
  * @returns {void}
  */
-function meseCreate(dirTarget, callback) {
+function create(dirTarget, callback) {
   copySync(join(__dirname, "..", "boilerplate/sc-mese-app"), dirTarget);
   callback && callback();
 }

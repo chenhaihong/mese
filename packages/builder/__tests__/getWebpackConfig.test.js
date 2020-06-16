@@ -16,7 +16,7 @@ describe("@mese/builder/lib/getWebpackConfig", () => {
     join(dirBoilerplate, "dist"),
   ];
 
-  test("browser app 配置应该包含这些属性", () => {
+  test("webpack.browserApp 配置应该包含这些属性", () => {
     const all = getWebpackConfig({ mode, meseConfigUrl, outputPath });
     const first = all[0];
 
@@ -38,7 +38,7 @@ describe("@mese/builder/lib/getWebpackConfig", () => {
     expect(first).toHaveProperty("externals");
   });
 
-  test("node app 配置应该包含这些属性", () => {
+  test("webpack.nodeApp 配置应该包含这些属性", () => {
     const all = getWebpackConfig({ mode, meseConfigUrl, outputPath });
     const second = all[1];
 
@@ -58,7 +58,7 @@ describe("@mese/builder/lib/getWebpackConfig", () => {
     expect(second).toHaveProperty("stats");
   });
 
-  test("mese config node 配置应该包含这些属性", () => {
+  test("webpack.api 配置应该包含这些属性", () => {
     const all = getWebpackConfig({ mode, meseConfigUrl, outputPath });
     const third = all[2];
 
@@ -75,5 +75,24 @@ describe("@mese/builder/lib/getWebpackConfig", () => {
     expect(third).toHaveProperty("resolve");
     expect(third).toHaveProperty("resolveLoader");
     expect(third).toHaveProperty("stats");
+  });
+
+  test("webpack.nodeMeseConfig 配置应该包含这些属性", () => {
+    const all = getWebpackConfig({ mode, meseConfigUrl, outputPath });
+    const fourth = all[3];
+
+    expect(fourth).toHaveProperty("name");
+
+    expect(fourth).toHaveProperty("target");
+    expect(fourth).toHaveProperty("mode");
+    expect(fourth).toHaveProperty("watch");
+    expect(fourth).toHaveProperty("devtool");
+
+    expect(fourth).toHaveProperty("entry");
+    expect(fourth).toHaveProperty("output");
+
+    expect(fourth).toHaveProperty("resolve");
+    expect(fourth).toHaveProperty("resolveLoader");
+    expect(fourth).toHaveProperty("stats");
   });
 });
