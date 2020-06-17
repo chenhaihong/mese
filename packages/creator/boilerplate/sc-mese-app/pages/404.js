@@ -18,6 +18,9 @@ export function createPage() {
 export async function getPageConfig() {
   return {
     onMemoryCache: true,
+    onSSR: true,
+    onCSR: false,
+
     body: {
       beforePageJs: [
         '<script src="https://cdn.bootcss.com/react/16.8.4/umd/react.development.js"></script>',

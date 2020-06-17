@@ -54,7 +54,7 @@ class ExpressMaker {
   _useIndex() {
     const { app, preparer, markupMaker } = this;
     // 首页
-    app.get("/", async function (req, res, next) {
+    app.get("/", async function (req, res) {
       res.set({
         "Content-Type": "text/html",
         "Cache-Control": "public, max-age=0",
@@ -123,23 +123,10 @@ class ExpressMaker {
   }
 
   _use404() {
-    // catch 404 and forward to error handler
-    this.app.use(function (req, res, next) {
-      const err = new Error("Not Found");
-      err.status = 404;
-      next(err);
-    });
-  }
-
-  _useError() {
-    // error handler
+    // catch 404
     const { app, preparer, markupMaker } = this;
-    app.use(async function (err, req, res, next) {
-      const { status = 500 } = err;
-      const pascalCasePageName =
-        status === 404
-          ? preparer.getPascalCasePageNameOf404()
-          : preparer.getPascalCasePageNameOf500();
+    app.use(async function notFoundHandler(req, res, next) {
+      const pascalCasePageName = preparer.getPascalCasePageNameOf404();
       const options = {
         associatedFiles: preparer.getAssociatedFiles(pascalCasePageName),
         path: req.path,
@@ -149,7 +136,27 @@ class ExpressMaker {
         pascalCasePageName,
         options
       );
-      res.status(status);
+      res.status(404);
+      res.send(htmlString);
+    });
+  }
+
+  _useError() {
+    // error handler
+    const { app, preparer, markupMaker } = this;
+    app.use(async function errorHandler(err, req, res, next) {
+      const pascalCasePageName = preparer.getPascalCasePageNameOf500();
+      const options = {
+        associatedFiles: preparer.getAssociatedFiles(pascalCasePageName),
+        path: req.path,
+        query: req.query,
+        error: { message: err.message, stack: err.stack },
+      };
+      const htmlString = await markupMaker.makeString(
+        pascalCasePageName,
+        options
+      );
+      res.status(500);
       res.send(htmlString);
     });
   }
