@@ -6,7 +6,7 @@
  * @Author: erye
  * @Date: 2020-06-02 17:54:13
  * @Last Modified by: erye
- * @Last Modified time: 2020-06-09 17:56:59
+ * @Last Modified time: 2020-06-17 15:28:35
  */
 const { resolve } = require("path");
 const merge = require("webpack-merge");
@@ -35,7 +35,7 @@ module.exports = ({ mode, meseConfigUrl, outputPath }) => {
         path: resolve(outputPath, "browserApp"),
         filename: "[name].[hash:6].js",
         chunkFilename: "[name].[hash:6].js",
-        library: "mese_[name]",
+        library: "Mese[name]",
         libraryTarget: "umd",
       },
       externals: {
