@@ -23,7 +23,7 @@ const args = [
   "--runInBand", // 顺序执行
   "--passWithNoTests",
   "--detectOpenHandles",
-  // "--silent", // Prevent tests from printing messages through the console.
+  "--silent", // Prevent tests from printing messages through the console.
   "--config",
   resolve(dirRoot, "jest.config.js"),
   `--rootDir`,

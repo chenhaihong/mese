@@ -116,9 +116,13 @@ class ExpressMaker {
         return next();
       }
 
-      typeof result === "function"
-        ? res.json(await result(req, res, next))
-        : res.json(result);
+      try {
+        typeof result === "function"
+          ? res.json(await result(req, res, next))
+          : res.json(result);
+      } catch (error) {
+        next(error);
+      }
     });
   }
 

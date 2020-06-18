@@ -89,7 +89,6 @@ class MarkupMaker {
     cache = cache.join("");
 
     if (onMemoryCache) this.htmlStringCacheMap.set(pascalCasePageName, cache);
-    console.log(path, query, error, cache);
     return cache;
   }
 

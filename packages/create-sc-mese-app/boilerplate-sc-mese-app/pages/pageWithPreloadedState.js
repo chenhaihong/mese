@@ -13,7 +13,7 @@ export function createPage({ path, query, preloadedStateString }) {
   return (
     <div className="app">
       <h1 className="title">mese</h1>
-      <p className="description">一个简易的 React ssr 框架。</p>
+      <p className="description">这个页面包含有预加载数据的逻辑。</p>
     </div>
   );
 }

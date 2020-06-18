@@ -1,6 +1,6 @@
 {
   "name": "@mese/builder",
-  "version": "0.0.10",
+  "version": "0.0.1",
   "description": "> TODO: description",
   "author": "erye <erye@tiiit.cn>",
   "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/builder#readme",
@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@babel/core": "7.10.2",
-    "@mese/babel-preset-react": "0.0.10",
+    "@mese/babel-preset-react": "0.0.1",
     "autoprefixer": "9.8.0",
     "babel-loader": "8.1.0",
     "css-loader": "3.5.3",

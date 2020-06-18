@@ -7,8 +7,7 @@ function InternalServerError(props) {
   return (
     <div className="app">
       <h1 className="title">500</h1>
-      <p className="description">Internal Server Error.</p>
-      <p className="description">{message}</p>
+      <p className="description">{message || "Internal Server Error."}</p>
       <pre>{stack}</pre>
     </div>
   );

@@ -12,8 +12,8 @@ module.exports = {
       component: "/pages/pageWithPreloadedState.js",
     },
   ],
-  apiFiles: ["/api/json.js", "/api/pureFunction.js", "/api/delayFunction.js"],
-  // TODO 自定义的构建配置选项
+  apiFiles: ["/api/json.js", "/api/pureFunction.js", "/api/asyncFunction.js"],
+  // TODO 还未添加支持，自定义的构建配置选项
   webpackOption: {
     output: {},
   },

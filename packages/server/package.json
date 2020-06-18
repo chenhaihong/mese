@@ -1,6 +1,6 @@
 {
   "name": "@mese/server",
-  "version": "0.0.10",
+  "version": "0.0.1",
   "description": "> TODO: description",
   "author": "erye <erye@tiiit.cn>",
   "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/server#readme",
@@ -31,13 +31,14 @@
     "express": "4.17.1",
     "fs-extra": "9.0.1",
     "morgan": "1.10.0",
+    "node-fetch": "2.6.0",
     "pascal-case": "3.1.1"
   },
   "peerDependencies": {
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@mese/builder": "0.0.10",
+    "@mese/builder": "0.0.1",
     "axios": "0.19.2",
     "react-dom": "16.13.1"
   }
