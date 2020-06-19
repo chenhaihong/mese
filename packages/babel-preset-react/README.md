@@ -1,11 +1,3 @@
-# `@mese/babel-preset-react`
+# @mese/babel-preset-react
 
-> TODO: description
-
-## Usage
-
-```
-const babelPresetReact = require('@mese/babel-preset-react');
-
-// TODO: DEMONSTRATE API
-```
+给 `@mese/builder` 使用的 babel preset。

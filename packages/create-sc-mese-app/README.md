@@ -1,11 +1,12 @@
-# `@mese/create`
+# @mese/create-sc-mese-app
 
-> TODO: description
+快速生成 `mese` 应用的源码。
 
-## Usage
+## 使用
 
-```
-const create = require('@mese/create');
+```bash
+$ npx @mese/create-sc-mese-app # 在当前工作空间下生成
 
-// TODO: DEMONSTRATE API
+# 或者
+$ npx @mese/create-sc-mese-app helloworld # 在当前工作空间的helloworld目录下生成
 ```

@@ -1,11 +1,12 @@
-# `mese-builder`
+# @mese/builder
 
-> TODO: description
+打包器。
 
-## Usage
+## 使用
 
-```
-const meseBuilder = require('mese-builder');
+```bash
+$ mese-build --mode=production --meseConfigUrl=mese.config.js --outputPath=dist
 
-// TODO: DEMONSTRATE API
+# 或者
+$ mese-watch --mode=development --meseConfigUrl=mese.config.js --outputPath=dist
 ```

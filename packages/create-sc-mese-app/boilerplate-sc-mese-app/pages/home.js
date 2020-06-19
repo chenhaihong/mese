@@ -14,7 +14,7 @@ class Home extends React.Component {
           M
         </button>
         <h1 className="title">mese</h1>
-        <p className="description">一个简易的 React ssr 框架。</p>
+        <p className="description">一个简陋的 React ssr 框架。</p>
       </div>
     );
   }
