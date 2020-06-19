@@ -5,5 +5,24 @@
  * @Author: erye
  * @Date: 2020-06-02 17:54:13
  * @Last Modified by: erye
- * @Last Modified time: 2020-06-03 21:27:31
+ * @Last Modified time: 2020-06-19 13:57:09
  */
+
+const merge = require("webpack-merge");
+
+const _common = require("./cell/webpack.common");
+const _entryServer = require("./cell/webpack.entryServer");
+
+module.exports = ({ mode, meseConfigUrl, outputPath }) => {
+  return merge(_common(), _entryServer(meseConfigUrl), {
+    name: "SERVER",
+    target: "node",
+    mode,
+    devtool: false,
+    output: {
+      path: outputPath,
+      filename: "[name].js",
+      libraryTarget: "commonjs2",
+    },
+  });
+};

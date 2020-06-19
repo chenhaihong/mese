@@ -22,7 +22,7 @@ beforeAll(() => {
 
 afterAll(() => {
   process.chdir(lastCwd);
-  fse.emptyDirSync(currCwd);
+  fse.removeSync(currCwd);
 });
 
 describe("@mese/create-sc-mese-app", () => {

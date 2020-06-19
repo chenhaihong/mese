@@ -1,6 +1,5 @@
 /*global beforeAll afterAll jest describe expect test:true*/
 
-// TODO 测试dev模式构建出来的文件
 // @mese/create copy出来的sc-mese-app代码中覆盖了下面几种情况
 //
 // getPageConfig 不存在

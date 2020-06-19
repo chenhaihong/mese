@@ -32,22 +32,28 @@ class Preparer {
    * 3 检测构建出来的manifest.json文件
    */
   checkIsAllReadyOtherwiseExit() {
-    const { nodeMeseConfigUrl, browserAppManifestUrl } = this;
+    const { meseAppDir, nodeMeseConfigUrl, browserAppManifestUrl } = this;
 
-    // （1）检测：必须存在mese配置
+    // （1）检测：必须存在meseAppDir目录
+    if (!fse.pathExistsSync(meseAppDir)) {
+      console.log(`[Mese] meseAppDir not found.`);
+      process.exit(-1);
+    }
+
+    // （2）检测：必须meseAppDir目录下必须存在mese配置
     if (!fse.pathExistsSync(nodeMeseConfigUrl)) {
       console.log(`[Mese] mese.config.node.js not found.`);
       process.exit(-1);
     }
 
-    // （2）检测：页面数组不能为空
+    // （3）检测：页面数组不能为空
     const { pages } = compatibleRequire(nodeMeseConfigUrl);
     if (!Array.isArray(pages) || pages.length === 0) {
       console.log("[Mese] pages not found.");
       process.exit(-1);
     }
 
-    // （3）检测：必须存在manifest.json文件
+    // （4）检测：必须存在manifest.json文件
     if (!fse.pathExistsSync(browserAppManifestUrl)) {
       console.log("[Mese] manifest.json not found.");
       process.exit(-1);

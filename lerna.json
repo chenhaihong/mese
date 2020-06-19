@@ -2,7 +2,8 @@
   "useWorkspaces": true,
   "npmClient": "yarn",
   "packages": [
-    "packages/*"
+    "packages/*",
+    "packages/create-sc-mese-app/boilerplate-sc-mese-app"
   ],
   "command": {
     "create": {
@@ -17,9 +18,7 @@
       "exact": true
     },
     "publish": {
-      "ignoreChanges": [
-        "*.md"
-      ],
+      "ignoreChanges": ["*.md"],
       "message": "chore(release): publish"
     }
   },

@@ -30,7 +30,8 @@ class ExpressMaker {
   _useDefault() {
     const { app } = this;
     // 1 for logging tiny messages
-    app.use(logger("tiny"));
+    // :remote-addr :remote-user :method :url HTTP/:http-version :status :res[content-length] - :response-time ms
+    app.use(logger("short"));
     // 2 for parsing application/json
     app.use(express.json());
     // 3 for parsing application/x-www-form-urlencoded
