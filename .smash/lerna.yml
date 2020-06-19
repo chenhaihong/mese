@@ -1,11 +1,25 @@
 # 新建包
-create:
+lerna-create:
   - name: smash-middleware-shell
     commands:
       - npx lerna create @mese/package-name
 
 # 添加依赖
-add:
+lerna-add:
   - name: smash-middleware-shell
     commands:
       - npx lerna add [--scope=@mese/package-name] package-name
+
+# 清空包的node_modules
+lerna-clean:
+  - name: smash-middleware-shell
+    commands:
+      - npx lerna clean
+
+# 发布
+lerna-publish:
+  - name: smash-middleware-shell
+    commands:
+      - nrm use npm
+      - npx lerna publish
+      - nrm use taobao

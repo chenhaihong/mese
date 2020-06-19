@@ -1,0 +1,17 @@
+# 安装依赖
+dumi-install:
+  - name: smash-middleware-shell
+    commands:
+      - todo
+
+# 启动服务
+dumi-start:
+  - name: smash-middleware-shell
+    commands:
+      - todo
+
+# 构建
+dumi-build:
+  - name: smash-middleware-shell
+    commands:
+      - todo
