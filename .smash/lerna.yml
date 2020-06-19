@@ -1,0 +1,11 @@
+# 新建包
+create:
+  - name: smash-middleware-shell
+    commands:
+      - npx lerna create @mese/package-name
+
+# 添加依赖
+add:
+  - name: smash-middleware-shell
+    commands:
+      - npx lerna add [--scope=@mese/package-name] package-name

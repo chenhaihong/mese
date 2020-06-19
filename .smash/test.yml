@@ -1,0 +1,10 @@
+# 全部包测试
+test-all:
+  - name: smash-middleware-shell
+    commands:
+      - node ./scripts/test.js
+
+test-one:
+  - name: smash-middleware-shell
+    commands:
+      - node ./scripts/test.js --package=builder
