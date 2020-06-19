@@ -2,8 +2,14 @@
   "name": "@mese/create-sc-mese-app",
   "version": "0.0.1",
   "description": "创建模板",
-  "author": "erye <erye@tiiit.cn>",
-  "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/creator#readme",
+  "authors": [
+    {
+      "name": "erye",
+      "email": "erye@tiiit.cn",
+      "web": "https://www.tiiit.cn"
+    }
+  ],
+  "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/create-sc-mese-app#readme",
   "license": "MIT",
   "main": "lib/create-sc-mese-app.js",
   "bin": {
@@ -14,7 +20,8 @@
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "lib",
+    "boilerplate-sc-mese-app"
   ],
   "publishConfig": {
     "access": "public"

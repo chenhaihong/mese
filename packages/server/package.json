@@ -2,7 +2,13 @@
   "name": "@mese/server",
   "version": "0.0.1",
   "description": "> TODO: description",
-  "author": "erye <erye@tiiit.cn>",
+  "authors": [
+    {
+      "name": "erye",
+      "email": "erye@tiiit.cn",
+      "web": "https://www.tiiit.cn"
+    }
+  ],
   "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/server#readme",
   "license": "MIT",
   "main": "lib/Server.js",
@@ -14,7 +20,8 @@
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "lib",
+    "bin"
   ],
   "publishConfig": {
     "access": "public"

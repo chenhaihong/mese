@@ -3,8 +3,14 @@
   "name": "@mese/tester",
   "version": "0.0.1",
   "description": "> TODO: description",
-  "author": "erye <erye@tiiit.cn>",
-  "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/test#readme",
+  "authors": [
+    {
+      "name": "erye",
+      "email": "erye@tiiit.cn",
+      "web": "https://www.tiiit.cn"
+    }
+  ],
+  "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/tester#readme",
   "license": "MIT",
   "main": "lib/test.js",
   "directories": {

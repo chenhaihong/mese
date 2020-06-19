@@ -3,7 +3,13 @@
   "name": "@mese/boilerplate-sc-mese-app",
   "version": "0.0.1",
   "description": "source code of mese app",
-  "author": "erye <erye@tiiit.cn>",
+  "authors": [
+    {
+      "name": "erye",
+      "email": "erye@tiiit.cn",
+      "web": "https://www.tiiit.cn"
+    }
+  ],
   "license": "MIT",
   "scripts": {
     "build": "mese-build --mode=production --meseConfigUrl=mese.config.js --outputPath=dist",

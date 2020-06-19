@@ -2,7 +2,13 @@
   "name": "@mese/babel-preset-react",
   "version": "0.0.1",
   "description": "> TODO: description",
-  "author": "erye <erye@tiiit.cn>",
+  "authors": [
+    {
+      "name": "erye",
+      "email": "erye@tiiit.cn",
+      "web": "https://www.tiiit.cn"
+    }
+  ],
   "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/babel-preset-react#readme",
   "license": "MIT",
   "main": "lib/babel-preset-react.js",
