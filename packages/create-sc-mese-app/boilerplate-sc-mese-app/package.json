@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@mese/boilerplate-sc-mese-app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "source code of mese app",
   "authors": [
     {
@@ -21,8 +21,8 @@
     "url": "git+https://github.com/chenhaihong/mese.git"
   },
   "dependencies": {
-    "@mese/builder": "0.0.1",
-    "@mese/server": "0.0.1",
+    "@mese/builder": "0.0.2",
+    "@mese/server": "0.0.2",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   }

@@ -1,6 +1,6 @@
 {
   "name": "@mese/builder",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "> TODO: description",
   "authors": [
     {
@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@babel/core": "7.10.2",
-    "@mese/babel-preset-react": "0.0.1",
+    "@mese/babel-preset-react": "0.0.2",
     "autoprefixer": "9.8.0",
     "babel-loader": "8.1.0",
     "css-loader": "3.5.3",

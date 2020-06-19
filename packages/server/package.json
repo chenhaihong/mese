@@ -1,6 +1,6 @@
 {
   "name": "@mese/server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "> TODO: description",
   "authors": [
     {
@@ -50,7 +50,7 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@mese/builder": "0.0.1",
+    "@mese/builder": "0.0.2",
     "axios": "0.19.2",
     "react-dom": "16.13.1"
   }
