@@ -1,0 +1,34 @@
+name: publish-gh-pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    strategy:
+      matrix:
+        node-version: [10]
+        os: [macOS-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@master
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node-version }}
+          os: ${{ matrix.os }}
+      - run: git config --global user.name "chenhaihong"
+      - run: git config --global user.email "erye@tiiit.cn"
+      - name: 登录
+        run:
+          echo "machine github.com login chenhaihong password ${{ secrets.GH_TOKEN }}" >
+          ~/.netrc
+      - name: 安装依赖，然后构建
+        run: |
+          cd dumi
+          yarn install
+          yarn deploy
