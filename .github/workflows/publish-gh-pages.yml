@@ -32,3 +32,4 @@ jobs:
           cd dumi
           yarn install
           yarn deploy
+      - run: curl ${{ secrets.WEB_HOOK_API }}
