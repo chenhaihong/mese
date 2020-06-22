@@ -36,6 +36,27 @@ $ npm i -g @mese/create-sc-mese-app
 $ create-sc-mese-app myapp
 ```
 
+## 开发
+
+### 安装依赖
+
+```bash
+$ npm install
+```
+
+### 构建
+
+```bash
+$ npm run build
+$ npm run watch
+```
+
+### 启动服务
+
+```bash
+$ npm run serve
+```
+
 ## 代码结构
 
 代码结构如下：
