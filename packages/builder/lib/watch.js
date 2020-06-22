@@ -16,7 +16,7 @@ function watch(config, callback) {
   const compiler = webpack(config);
   const watchOptions = {
     poll: 2000,
-    aggregateTimeout: 2000,
+    aggregateTimeout: 500, // ms，重新构建前增加延迟，将这段时间内进行的任何其他更改都聚合到一次重新构建里
     ignored: /node_modules/,
   };
   // 错误处理 https://webpack.docschina.org/api/node/#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86-error-handling-
@@ -24,4 +24,6 @@ function watch(config, callback) {
   const watching = compiler.watch(watchOptions, (err, stats) => {
     callback(err, stats, watching);
   });
+
+  return compiler;
 }

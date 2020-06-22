@@ -1,7 +1,7 @@
 {
   "name": "@mese/server",
   "version": "0.0.3",
-  "description": "> TODO: description",
+  "description": "使用 express 封装 web server，用于快速启动一个 mese 应用。",
   "authors": [
     {
       "name": "erye",
@@ -9,11 +9,11 @@
       "web": "https://www.tiiit.cn"
     }
   ],
-  "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/server#readme",
+  "homepage": "https://mese.tiiit.cn",
   "license": "MIT",
   "main": "lib/Server.js",
   "bin": {
-    "mese-serve": "bin/serve.js"
+    "mese-serve": "bin/mese-serve.js"
   },
   "directories": {
     "lib": "lib",

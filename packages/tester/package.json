@@ -10,7 +10,7 @@
       "web": "https://www.tiiit.cn"
     }
   ],
-  "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/tester#readme",
+  "homepage": "https://mese.tiiit.cn",
   "license": "MIT",
   "main": "lib/test.js",
   "directories": {

@@ -1,7 +1,7 @@
 {
   "name": "@mese/babel-preset-react",
   "version": "0.0.3",
-  "description": "> TODO: description",
+  "description": "给 @mese/builder 使用的 babel preset。",
   "authors": [
     {
       "name": "erye",
@@ -9,7 +9,7 @@
       "web": "https://www.tiiit.cn"
     }
   ],
-  "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/babel-preset-react#readme",
+  "homepage": "https://mese.tiiit.cn",
   "license": "MIT",
   "main": "lib/babel-preset-react.js",
   "directories": {

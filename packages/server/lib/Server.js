@@ -17,7 +17,7 @@ class Server {
       success && success(port);
     });
     server.on("error", (error) => {
-      fail && fail(error);
+      fail && fail(error, port);
     });
     const options = { host, port };
     server.listen(options);
@@ -29,7 +29,7 @@ class Server {
     console.log(`[Mese] Listening on port ${port}`);
   }
 
-  static startUpUnsuccessfully(e) {
+  static startUpUnsuccessfully(e, port) {
     if (e.syscall !== "listen") {
       throw e;
     }

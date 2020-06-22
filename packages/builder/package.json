@@ -1,7 +1,7 @@
 {
   "name": "@mese/builder",
   "version": "0.0.3",
-  "description": "> TODO: description",
+  "description": "mese app 打包器。",
   "authors": [
     {
       "name": "erye",
@@ -9,12 +9,13 @@
       "web": "https://www.tiiit.cn"
     }
   ],
-  "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/builder#readme",
+  "homepage": "https://mese.tiiit.cn",
   "license": "MIT",
   "main": "lib/builder.js",
   "bin": {
     "mese-build": "bin/mese-build.js",
-    "mese-watch": "bin/mese-watch.js"
+    "mese-watch": "bin/mese-watch.js",
+    "mese-dev-server": "bin/mese-dev-server.js"
   },
   "directories": {
     "lib": "lib",
@@ -44,6 +45,7 @@
     "@mese/babel-preset-react": "0.0.3",
     "autoprefixer": "9.8.0",
     "babel-loader": "8.1.0",
+    "chalk": "4.1.0",
     "css-loader": "3.5.3",
     "fs-extra": "9.0.1",
     "html-loader": "1.1.0",
@@ -53,11 +55,15 @@
     "less-loader": "6.1.0",
     "mini-css-extract-plugin": "0.9.0",
     "minimist": "1.2.5",
+    "ora": "4.0.4",
     "pascal-case": "3.1.1",
     "postcss-loader": "3.0.0",
     "webpack": "4.43.0",
     "webpack-manifest-plugin": "2.2.0",
     "webpack-merge": "4.2.2",
     "webpackbar": "4.0.0"
+  },
+  "peerDependencies": {
+    "@mese/server": "0.0.3"
   }
 }

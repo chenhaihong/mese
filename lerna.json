@@ -7,7 +7,7 @@
   ],
   "command": {
     "create": {
-      "homepage": "https://github.com/chenhaihong/mese",
+      "homepage": "https://mese.tiiit.cn",
       "license": "MIT",
       "registry": "https://registry.npmjs.org/"
     },

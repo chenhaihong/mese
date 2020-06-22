@@ -1,7 +1,7 @@
 {
   "name": "@mese/create-sc-mese-app",
   "version": "0.0.3",
-  "description": "创建模板",
+  "description": "创建 mese app 源码模板。",
   "authors": [
     {
       "name": "erye",
@@ -9,7 +9,7 @@
       "web": "https://www.tiiit.cn"
     }
   ],
-  "homepage": "https://github.com/chenhaihong/mese/tree/master/packages/create-sc-mese-app#readme",
+  "homepage": "https://mese.tiiit.cn",
   "license": "MIT",
   "main": "lib/create-sc-mese-app.js",
   "bin": {

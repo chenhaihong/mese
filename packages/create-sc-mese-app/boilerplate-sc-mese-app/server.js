@@ -1,3 +1,7 @@
+#!/usr/bin/env node
+
+// 使用pm2运行这个文件来启动守护进程
+
 const { join } = require("path");
 const Server = require("@mese/server");
 

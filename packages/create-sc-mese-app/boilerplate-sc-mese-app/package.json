@@ -14,7 +14,8 @@
   "scripts": {
     "build": "mese-build --mode=production --meseConfigUrl=mese.config.js --outputPath=dist",
     "watch": "mese-watch --mode=development --meseConfigUrl=mese.config.js --outputPath=dist",
-    "serve": "mese-serve --meseAppDir=dist --host=127.0.0.1 --port=3000 "
+    "devServer": "mese-dev-server --mode=development --meseConfigUrl=mese.config.js --outputPath=dist --host=127.0.0.1 --port=3000",
+    "serve": "mese-serve --meseAppDir=dist --host=127.0.0.1 --port=3000 --open"
   },
   "repository": {
     "type": "git",
