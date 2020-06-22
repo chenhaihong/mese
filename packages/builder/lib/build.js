@@ -13,8 +13,8 @@ module.exports = build;
  * @returns {void}
  */
 function build(config, callback) {
-  // 错误处理 https://webpack.docschina.org/api/node/#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86-error-handling-
-  // stats 统计信息 https://webpack.docschina.org/configuration/stats
+  // 错误处理 https://v4.webpack.docschina.org/api/node/#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86-error-handling-
+  // stats 统计信息 https://v4.webpack.docschina.org/configuration/stats
   const compiler = webpack(config);
   compiler.run((err, stats) => {
     callback(err, stats);

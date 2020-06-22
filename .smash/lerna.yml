@@ -18,6 +18,11 @@ lerna-clean:
 
 # 发布
 lerna-publish:
+  # 清除一些构建出来的文件
+  - name: smash-middleware-clean
+    dirs:
+      - ./packages/create-sc-mese-app/boilerplate-sc-mese-app/dist
+      - ./packages/create-sc-mese-app/boilerplate-sc-mese-app/node_modules
   - name: smash-middleware-shell
     commands:
       - nrm use npm

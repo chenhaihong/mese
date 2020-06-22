@@ -5,15 +5,16 @@
  * @Author: erye
  * @Date: 2020-06-02 18:40:35
  * @Last Modified by: erye
- * @Last Modified time: 2020-06-08 18:16:09
+ * @Last Modified time: 2020-06-22 13:48:56
  */
 
 const merge = require("webpack-merge");
 
 const _common = require("./cell/webpack.common");
+const _progressBar = require("./cell/webpack.progressBar");
 
 module.exports = ({ mode, meseConfigUrl, outputPath }) => {
-  return merge(_common(), {
+  return merge(_common(), _progressBar({ name: "NODE_MESE_CONFIG" }), {
     name: "NODE_MESE_CONFIG",
     target: "node",
     mode,

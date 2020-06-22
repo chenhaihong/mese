@@ -27,9 +27,10 @@ class Preparer {
 
   /**
    * 检测构建出来的项目是否就绪，否则退出程序。
-   * 1 检测配置是否存在
-   * 2 检测配置里的pages页面数据是否正确
-   * 3 检测构建出来的manifest.json文件
+   * 1 检测是否存在 —— meseAppDir目录
+   * 2 检测是否存在 —— mese.config.node.js配置
+   * 3 检测是否正确 —— 配置里的pages页面数据
+   * 4 检测是否存在 —— 构建出来的manifest.json文件
    */
   checkIsAllReadyOtherwiseExit() {
     const { meseAppDir, nodeMeseConfigUrl, browserAppManifestUrl } = this;
@@ -173,9 +174,24 @@ class Preparer {
       this,
       this.getBrowserAppManifest(),
     ];
+    const [vendorJs, commonJs, vendorCss, commonCss] = [
+      browserAppManifest["vendor.js"],
+      browserAppManifest["common.js"],
+      browserAppManifest["vendor.css"],
+      browserAppManifest["common.css"],
+    ];
+
     return {
+      // 客户端所需
+      vendorJs: vendorJs ? join("/", vendorJs) : "",
+      commonJs: commonJs ? join("/", commonJs) : "",
       js: join("/", browserAppManifest[`${pascalCaseName}.js`]),
+
+      vendorCss: vendorCss ? join("/", vendorCss) : "",
+      commonCss: commonCss ? join("/", commonCss) : "",
       css: join("/", browserAppManifest[`${pascalCaseName}.css`]),
+
+      // 服务端所需
       node: join(nodeAppDir, `${pascalCaseName}.node.js`),
     };
   }

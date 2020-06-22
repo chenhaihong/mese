@@ -34,7 +34,7 @@ class Server {
       throw e;
     }
 
-    const bind = "Port " + port;
+    const bind = "[Mese] Port " + port;
 
     // handle specific listen errors with friendly messages
     switch (e.code) {

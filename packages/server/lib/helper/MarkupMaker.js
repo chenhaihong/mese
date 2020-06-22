@@ -21,7 +21,15 @@ class MarkupMaker {
     if (cache) return cache;
 
     const { associatedFiles, path, query, error = undefined } = options;
-    const { js, css, node } = associatedFiles;
+    const {
+      vendorJs,
+      commonJs,
+      js,
+      vendorCss,
+      commonCss,
+      css,
+      node,
+    } = associatedFiles;
     const {
       getPageConfig,
       getPreloadedStateString,
@@ -52,6 +60,8 @@ class MarkupMaker {
     // head.beginTag
     cache.push(`<head>`);
     cache.push(beforePageCSS);
+    vendorCss && cache.push(`<link rel="stylesheet" href="${vendorCss}">`);
+    commonCss && cache.push(`<link rel="stylesheet" href="${commonCss}">`);
     cache.push(`<link rel="stylesheet" href="${css}">`);
     cache.push(afterPageCSS);
     // head.endTag
@@ -72,6 +82,8 @@ class MarkupMaker {
     cache.push("</div>");
     cache.push(beforePageJs);
     if (onCSR) {
+      vendorJs && cache.push(`<script src="${vendorJs}"></script>`);
+      commonJs && cache.push(`<script src="${commonJs}"></script>`);
       cache.push(
         `<script src="${js}"></script>`,
         `<script>ReactDOM.hydrate(Mese${pascalCasePageName}.createPage(`,

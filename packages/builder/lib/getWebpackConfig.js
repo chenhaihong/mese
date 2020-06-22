@@ -1,9 +1,9 @@
 /*eslint no-console: 0 */
 
+const getNodeMeseConfigConf = require("./config/webpack.nodeMeseConfig");
+const getApiConf = require("./config/webpack.api");
 const getBrowserAppConf = require("./config/webpack.browserApp");
 const getNodeAppConf = require("./config/webpack.nodeApp");
-const getApiConf = require("./config/webpack.api");
-const getNodeMeseConfigConf = require("./config/webpack.nodeMeseConfig");
 
 module.exports = getWebpackConfig;
 
@@ -16,9 +16,9 @@ module.exports = getWebpackConfig;
  */
 function getWebpackConfig({ mode, meseConfigUrl, outputPath }) {
   return [
+    getNodeMeseConfigConf({ mode, meseConfigUrl, outputPath }),
+    getApiConf({ mode, meseConfigUrl, outputPath }),
     getBrowserAppConf({ mode, meseConfigUrl, outputPath }),
     getNodeAppConf({ mode, meseConfigUrl, outputPath }),
-    getApiConf({ mode, meseConfigUrl, outputPath }),
-    getNodeMeseConfigConf({ mode, meseConfigUrl, outputPath }),
   ];
 }

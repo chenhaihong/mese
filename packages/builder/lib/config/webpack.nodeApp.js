@@ -6,13 +6,14 @@
  * @Author: erye
  * @Date: 2020-06-02 18:40:35
  * @Last Modified by: erye
- * @Last Modified time: 2020-06-09 17:56:59
+ * @Last Modified time: 2020-06-22 13:48:56
  */
 
 const { resolve } = require("path");
 const merge = require("webpack-merge");
 
 const _common = require("./cell/webpack.common");
+const _progressBar = require("./cell/webpack.progressBar");
 const _entryPages = require("./cell/webpack.entryPages");
 const _jsx = require("./cell/webpack.jsx.js");
 const _isomorphicStyle = require("./cell/webpack.isomorphicStyle");
@@ -20,6 +21,7 @@ const _isomorphicStyle = require("./cell/webpack.isomorphicStyle");
 module.exports = ({ mode, meseConfigUrl, outputPath }) => {
   return merge(
     _common(),
+    _progressBar({ name: "NODE_APP" }),
     _entryPages(meseConfigUrl),
     _jsx(),
     _isomorphicStyle(),

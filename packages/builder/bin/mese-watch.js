@@ -38,7 +38,7 @@ builder.watch(config, (err, stats) => {
     return;
   }
 
-  // stats 统计信息 https://webpack.docschina.org/configuration/stats
+  // stats 统计信息 https://v4.webpack.docschina.org/configuration/stats
   console.log(
     stats.toString({
       all: false,

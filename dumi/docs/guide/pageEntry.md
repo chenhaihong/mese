@@ -21,20 +21,14 @@ export async function getPageConfig({ path, query, fetch }) {
 
   return {
     onMemoryCache: false,
+    onSSR: true,
+    onCSR: true,
     head: {
-      beforePageCSS: [
-        '<meta charset="utf-8">',
-        '<title>mese</title>',
-        '<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">',
-      ].join(''),
+      beforePageCSS: '',
       afterPageCSS: '',
     },
     body: {
-      beforePageJs: [
-        '<script src="https://cdn.bootcss.com/react/16.8.4/umd/react.development.js"></script>',
-        '<script src="https://cdn.bootcss.com/react-dom/16.8.4/umd/react-dom.development.js"></script>',
-        '<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>',
-      ].join(''),
+      beforePageJs: '',
       afterPageJs: '',
     },
   };
@@ -82,8 +76,14 @@ export function createPage({ path, query, preloadedStateString, error }) {
 
 ## 执行顺序
 
-它们的执行顺序如下，
+服务端上的执行顺序如下，
 
 ```
 getPageConfig --> getPreloadedStateString --> createPage
+```
+
+客户端上只执行下面 1 个方法，
+
+```
+createPage
 ```

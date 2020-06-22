@@ -15,7 +15,7 @@ new Server({
   host,
   port,
   success: (port) => {
-    open && openPage(`http://localhost:${port}`);
+    open && openPage(`http://${host}:${port}`);
     Server.startUpSuccessfully(port);
   },
   fail: Server.startUpUnsuccessfully,
