@@ -22,27 +22,41 @@ class MarkupMaker {
 
     const { associatedFiles, path, query, error = undefined } = options;
     const {
+      // for CSR
       vendorJs,
       commonJs,
-      js,
+      pageJs,
       vendorCss,
       commonCss,
-      css,
-      node,
+      pageCss,
+      // for SSR
+      nodeJs,
     } = associatedFiles;
     const {
       getPageConfig,
       getPreloadedStateString,
       createPage,
-    } = compatibleRequire(node);
+    } = compatibleRequire(nodeJs);
 
     const {
       onMemoryCache, // 服务端的内存缓存
-      onSSR, // server side render
-      onCSR, // client side render
+      onSSR, // 启用服务端渲染
+      onCSR, // 启用客户端渲染
 
-      head: { beforePageCSS, afterPageCSS },
-      body: { beforePageJs, afterPageJs },
+      docType,
+      html: { beginTag: htmlBeginTag, endTag: htmlEndTag },
+      head: {
+        beginTag: headBeginTag,
+        endTag: headEndTag,
+        beforePageCSS,
+        afterPageCSS,
+      },
+      body: {
+        beginTag: bodyBeginTag,
+        endTag: bodyEndTag,
+        beforePageJs,
+        afterPageJs,
+      },
     } = await this.makeUpPageConfig(getPageConfig, { path, query });
 
     const preloadedStateString = await this.makeUpPreloadedStateString(
@@ -51,26 +65,21 @@ class MarkupMaker {
     );
 
     // pageConfig包含跟下面结构相似的字段
-    // docType
-    cache = ["<!DOCTYPE html>"];
+    cache = [docType, htmlBeginTag];
 
-    // html.beginTag
-    cache.push('<html lang="zh">');
+    // head
+    cache.push(
+      headBeginTag,
+      beforePageCSS,
+      vendorCss ? `<link rel="stylesheet" href="${vendorCss}" />` : "",
+      commonCss ? `<link rel="stylesheet" href="${commonCss}" />` : "",
+      `<link rel="stylesheet" href="${pageCss}" />`,
+      afterPageCSS,
+      headEndTag
+    );
 
-    // head.beginTag
-    cache.push(`<head>`);
-    cache.push(beforePageCSS);
-    vendorCss && cache.push(`<link rel="stylesheet" href="${vendorCss}">`);
-    commonCss && cache.push(`<link rel="stylesheet" href="${commonCss}">`);
-    cache.push(`<link rel="stylesheet" href="${css}">`);
-    cache.push(afterPageCSS);
-    // head.endTag
-    cache.push(`</head>`);
-
-    // body.beginTag
-    cache.push(`<body>`);
-    // body.beginRoot
-    cache.push('<div id="root">');
+    // body
+    cache.push(bodyBeginTag, '<div id="root">');
     if (onSSR) {
       cache.push(
         ReactDOMServer.renderToStaticMarkup(
@@ -78,25 +87,18 @@ class MarkupMaker {
         )
       );
     }
-    // body.endRoot
-    cache.push("</div>");
-    cache.push(beforePageJs);
+    cache.push("</div>", beforePageJs);
     if (onCSR) {
       vendorJs && cache.push(`<script src="${vendorJs}"></script>`);
       commonJs && cache.push(`<script src="${commonJs}"></script>`);
       cache.push(
-        `<script src="${js}"></script>`,
+        `<script src="${pageJs}"></script>`,
         `<script>ReactDOM.hydrate(Mese${pascalCasePageName}.createPage(`,
         JSON.stringify({ path, query, preloadedStateString, error }),
         `), document.getElementById("root"));</script>`
       );
     }
-    cache.push(afterPageJs);
-    // body.endTag
-    cache.push(`</body>`);
-
-    // html.endTag
-    cache.push(`</html>`);
+    cache.push(afterPageJs, bodyEndTag, htmlEndTag);
 
     cache = cache.join("");
 
@@ -118,24 +120,39 @@ class MarkupMaker {
       pageConfig = await getPageConfig({ fetch, path, query });
     }
     let {
+      // 功能性相关的字段
       onMemoryCache = false,
       onSSR = true,
       onCSR = true,
 
-      // docType, // future feature
-      // html, // future feature
+      // 跟文档结构相关的字段
+      docType = "<!DOCTYPE html>",
+      html = {},
       head = {},
       body = {},
     } = pageConfig;
-    const [defaultHead, defaultBody] = [
-      { beforePageCSS: "", afterPageCSS: "" },
-      { beforePageJs: "", afterPageJs: "" },
+    const [defaultHtml, defaultHead, defaultBody] = [
+      { beginTag: '<html lang="zh">', endTag: "</html>" },
+      {
+        beginTag: "<head>",
+        endTag: "</head>",
+        beforePageCSS: "",
+        afterPageCSS: "",
+      },
+      {
+        beginTag: "<body>",
+        endTag: "</body>",
+        beforePageJs: "",
+        afterPageJs: "",
+      },
     ];
     return {
       onMemoryCache,
       onSSR,
       onCSR,
 
+      docType,
+      html: { ...defaultHtml, ...html },
       head: { ...defaultHead, ...head },
       body: { ...defaultBody, ...body },
     };

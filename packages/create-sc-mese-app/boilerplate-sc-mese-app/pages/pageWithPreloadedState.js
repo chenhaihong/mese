@@ -6,14 +6,12 @@ export function createPage({ path, query, preloadedStateString }) {
   // path 请求地址的路径部分
   // query 查询参数
   // preloadedStateString 预加载数据，字符串格式
-  if (preloadedStateString) {
-    const preloadedState = JSON.parse(preloadedStateString);
-    console.log(preloadedState);
-  }
+  const { message } = JSON.parse(preloadedStateString);
   return (
     <div className="app">
       <h1 className="title">mese</h1>
       <p className="description">这个页面包含有预加载数据的逻辑。</p>
+      <p className="description">{message}</p>
     </div>
   );
 }
@@ -24,7 +22,7 @@ export async function getPreloadedStateString({ path, query, fetch }) {
   // fetch node-fetch
 
   // 服务端执行，预加载数据
-  return await fetch("http://localhost:3000/get/json", {
+  return await fetch("http://127.0.0.1:3000/get/json", {
     method: "GET",
   }).then((res) => res.text());
 }

@@ -1,16 +1,17 @@
 #!/usr/bin/env node
 
-const chalk = require("chalk");
-const ora = require("ora");
-
-const Server = require("@mese/Server");
+const path = require("path");
+const execa = require("execa");
 
 const builder = require("../lib/builder");
 const CliArgvChecker = require("../lib/CliArgvChecker");
 const getWebpackConfig = require("../lib/getWebpackConfig");
 
 CliArgvChecker.check(({ mode, meseConfigUrl, outputPath, host, port }) => {
-  let server = null;
+  const [subprocess, devServerPath] = [
+    null,
+    path.join(__dirname, "devServer.js"),
+  ];
 
   const config = getWebpackConfig({ mode, meseConfigUrl, outputPath });
   const compiler = builder.watch(config, (err, stats) => {
@@ -42,48 +43,21 @@ CliArgvChecker.check(({ mode, meseConfigUrl, outputPath, host, port }) => {
       console.warn(info.warnings.toString({ colors: true }));
     }
   });
-  // 等待构建完成，启动或重启web服务
-  compiler.hooks.done.tap("所有编译完成", async () => {
-    if (server) {
-      server.close(async () => {
-        server = await startServer([outputPath, host, port]);
-      });
-    } else {
-      server = await startServer([outputPath, host, port]);
+  // 构建前，关闭subprocess
+  compiler.hooks.beforeCompile.tap("构建开始前", async () => {
+    if (subprocess) {
+      subprocess.cancel();
     }
   });
-});
-
-function startServer(options) {
-  if (startServer.id) clearTimeout(startServer.id);
-
-  return new Promise((resolve) => {
-    startServer.id = setTimeout(() => {
-      const spinner = ora("Starting server...").start();
-      const [meseAppDir, host, port] = options;
-      const server = new Server({
-        meseAppDir,
-        host,
-        port,
-        success: (port) => {
-          resolve(server);
-
-          spinner.stop();
-          const arr = [
-            chalk.bgGreenBright.black(" Mese "),
-            "Listening on",
-            chalk.greenBright.underline(`http://${host}:${port}`),
-          ];
-          console.log("\n", ...arr, "\n");
-        },
-        fail: (e, port) => {
-          resolve(null);
-
-          spinner.stop();
-          Server.startUpUnsuccessfully(e, port);
-        },
-      });
-    }, 500);
+  // 等待构建完成，启动subprocess
+  compiler.hooks.done.tap("所有编译完成", async () => {
+    if (subprocess) {
+      subprocess.cancel();
+    }
+    subprocess = execa("node", [devServerPath], {
+      cleanup: true,
+      env: { meseAppDir: outputPath, host, port },
+      extendEnv: false,
+    });
   });
-}
-startServer.id = null;
+});

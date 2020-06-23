@@ -182,17 +182,17 @@ class Preparer {
     ];
 
     return {
-      // 客户端所需
+      // 客户端所需 for CSR
       vendorJs: vendorJs ? join("/", vendorJs) : "",
       commonJs: commonJs ? join("/", commonJs) : "",
-      js: join("/", browserAppManifest[`${pascalCaseName}.js`]),
+      pageJs: join("/", browserAppManifest[`${pascalCaseName}.js`]),
 
       vendorCss: vendorCss ? join("/", vendorCss) : "",
       commonCss: commonCss ? join("/", commonCss) : "",
-      css: join("/", browserAppManifest[`${pascalCaseName}.css`]),
+      pageCss: join("/", browserAppManifest[`${pascalCaseName}.css`]),
 
-      // 服务端所需
-      node: join(nodeAppDir, `${pascalCaseName}.node.js`),
+      // 服务端所需 for SSR
+      nodeJs: join(nodeAppDir, `${pascalCaseName}.node.js`),
     };
   }
 }

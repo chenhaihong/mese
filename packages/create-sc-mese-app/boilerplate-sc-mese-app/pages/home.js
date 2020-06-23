@@ -14,7 +14,14 @@ class Home extends React.Component {
           M
         </button>
         <h1 className="title">mese</h1>
-        <p className="description">一个简陋的 React ssr 框架。</p>
+        <p className="description">
+          <span>一个简陋的 React ssr 框架。</span>
+          <br />
+          <span>使用指南：</span>
+          <a className="link--erye" href="https://mese.tiiit.cn" target="blank">
+            https://mese.tiiit.cn
+          </a>
+        </p>
       </div>
     );
   }
@@ -27,15 +34,24 @@ export function createPage() {
 export async function getPageConfig() {
   return {
     onMemoryCache: false,
+    docType: "<!DOCTYPE html>",
+    html: {
+      beginTag: "<html>",
+      endTag: "</html>",
+    },
     head: {
+      beginTag: "<head>",
+      endTag: "</head>",
       beforePageCSS: [
-        '<meta charset="utf-8">',
+        '<meta charset="utf-8" />',
         "<title>mese</title>",
-        '<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">',
+        '<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />',
       ].join(""),
       afterPageCSS: "",
     },
     body: {
+      beginTag: '<body class="helloworld">',
+      endTag: "</body>",
       beforePageJs: [
         '<script src="https://cdn.bootcss.com/react/16.8.4/umd/react.development.js"></script>',
         '<script src="https://cdn.bootcss.com/react-dom/16.8.4/umd/react-dom.development.js"></script>',
