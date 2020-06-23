@@ -14,20 +14,33 @@ title: 页面入口
 ### getPageConfig
 
 ```javascript
-export async function getPageConfig({ path, query, fetch }) {
-  // path 请求地址的路径部分
+export async function getPageConfig({ path, params, query, fetch }) {
+  // path  请求地址的路径部分
+  // params 动态路由的动态参数集，暂不支持
   // query 查询参数
-  // fetch node-fetch
+  // fetch 这里使用的node-fetch，可以阅读它的文档来了解如何使用它
 
   return {
+    // 功能相关的字段
     onMemoryCache: false,
     onSSR: true,
     onCSR: true,
+
+    // 文档结构相关的字段
+    docType: '<!DOCTYPE html>',
+    html: {
+      beginTag: '<html>',
+      endTag: '</html>',
+    },
     head: {
+      beginTag: '<head>',
+      endTag: '</head>',
       beforePageCSS: '',
       afterPageCSS: '',
     },
     body: {
+      beginTag: '<body>',
+      endTag: '</body>',
       beforePageJs: '',
       afterPageJs: '',
     },
@@ -39,9 +52,10 @@ export async function getPageConfig({ path, query, fetch }) {
 
 ```javascript
 export async function getPreloadedStateString({ path, query, fetch }) {
-  // path 请求地址的路径部分
-  // query 查询参数
-  // fetch node-fetch
+  // path   请求地址的路径部分
+  // params 动态路由的动态参数集，暂不支持
+  // query  查询参数
+  // fetch  node-fetch
 
   // 服务端执行，预加载数据
   return await fetch('http://localhost:3000/get/json', {

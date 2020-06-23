@@ -35,6 +35,8 @@ export function createPage() {
 export async function getPageConfig() {
   return {
     onMemoryCache: false,
+    onSSR: true,
+    onCSR: true,
     docType: "<!DOCTYPE html>",
     html: {
       beginTag: "<html>",
