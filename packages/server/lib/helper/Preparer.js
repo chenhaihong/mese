@@ -174,22 +174,24 @@ class Preparer {
       this,
       this.getBrowserAppManifest(),
     ];
-    const [vendorJs, commonJs, vendorCss, commonCss] = [
+    const [vendorJs, commonJs, pageJs, vendorCss, commonCss, pageCss] = [
       browserAppManifest["vendor.js"],
       browserAppManifest["common.js"],
+      browserAppManifest[`${pascalCaseName}.js`],
       browserAppManifest["vendor.css"],
       browserAppManifest["common.css"],
+      browserAppManifest[`${pascalCaseName}.css`],
     ];
 
     return {
       // 客户端所需 for CSR
       vendorJs: vendorJs ? join("/", vendorJs) : "",
       commonJs: commonJs ? join("/", commonJs) : "",
-      pageJs: join("/", browserAppManifest[`${pascalCaseName}.js`]),
+      pageJs: pageJs ? join("/", pageJs) : "",
 
       vendorCss: vendorCss ? join("/", vendorCss) : "",
       commonCss: commonCss ? join("/", commonCss) : "",
-      pageCss: join("/", browserAppManifest[`${pascalCaseName}.css`]),
+      pageCss: pageCss ? join("/", pageCss) : "",
 
       // 服务端所需 for SSR
       nodeJs: join(nodeAppDir, `${pascalCaseName}.node.js`),

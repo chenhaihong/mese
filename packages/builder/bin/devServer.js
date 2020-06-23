@@ -1,10 +1,10 @@
 #!/usr/bin/env node
+
 const chalk = require("chalk");
 const ora = require("ora");
 const Server = require("@mese/Server");
 
 const spinner = ora("Starting server...").start();
-
 const { meseAppDir, host, port } = process.env;
 new Server({
   meseAppDir,

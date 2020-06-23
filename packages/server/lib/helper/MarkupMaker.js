@@ -73,7 +73,7 @@ class MarkupMaker {
       beforePageCSS,
       vendorCss ? `<link rel="stylesheet" href="${vendorCss}" />` : "",
       commonCss ? `<link rel="stylesheet" href="${commonCss}" />` : "",
-      `<link rel="stylesheet" href="${pageCss}" />`,
+      pageCss ? `<link rel="stylesheet" href="${pageCss}" />` : "",
       afterPageCSS,
       headEndTag
     );
@@ -91,12 +91,13 @@ class MarkupMaker {
     if (onCSR) {
       vendorJs && cache.push(`<script src="${vendorJs}"></script>`);
       commonJs && cache.push(`<script src="${commonJs}"></script>`);
-      cache.push(
-        `<script src="${pageJs}"></script>`,
-        `<script>ReactDOM.hydrate(Mese${pascalCasePageName}.createPage(`,
-        JSON.stringify({ path, query, preloadedStateString, error }),
-        `), document.getElementById("root"));</script>`
-      );
+      pageJs &&
+        cache.push(
+          `<script src="${pageJs}"></script>`,
+          `<script>ReactDOM.hydrate(Mese${pascalCasePageName}.createPage(`,
+          JSON.stringify({ path, query, preloadedStateString, error }),
+          `), document.getElementById("root"));</script>`
+        );
     }
     cache.push(afterPageJs, bodyEndTag, htmlEndTag);
 

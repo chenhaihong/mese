@@ -16,7 +16,8 @@ class Home extends React.Component {
         <h1 className="title">mese</h1>
         <p className="description">
           <span>一个简陋的 React ssr 框架。</span>
-          <br />
+        </p>
+        <p className="description">
           <span>使用指南：</span>
           <a className="link--erye" href="https://mese.tiiit.cn" target="blank">
             https://mese.tiiit.cn
