@@ -1,6 +1,6 @@
 {
   "name": "@mese/create-sc-mese-app",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "创建 mese app 源码模板。",
   "authors": [
     {

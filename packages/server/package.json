@@ -1,6 +1,6 @@
 {
   "name": "@mese/server",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "使用 express 封装 web server，用于快速启动一个 mese 应用。",
   "authors": [
     {
@@ -50,7 +50,7 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@mese/builder": "0.0.3",
+    "@mese/builder": "0.0.4",
     "axios": "0.19.2",
     "react-dom": "16.13.1"
   }

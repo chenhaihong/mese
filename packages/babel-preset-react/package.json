@@ -1,6 +1,6 @@
 {
   "name": "@mese/babel-preset-react",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "给 @mese/builder 使用的 babel preset。",
   "authors": [
     {

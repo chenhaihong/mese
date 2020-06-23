@@ -1,6 +1,6 @@
 {
   "name": "@mese/builder",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "mese app 打包器。",
   "authors": [
     {
@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@babel/core": "7.10.2",
-    "@mese/babel-preset-react": "0.0.3",
+    "@mese/babel-preset-react": "0.0.4",
     "autoprefixer": "9.8.0",
     "babel-loader": "8.1.0",
     "chalk": "4.1.0",
