@@ -22,6 +22,14 @@ module.exports = {
       message: '这是纯json格式数据',
     },
   },
+  '/get/book/:id': {
+    dynamic: true,
+    method: 'get', // 请求类型
+    result: {
+      success: true,
+      message: '这是纯json格式数据',
+    },
+  },
 };
 ```
 
@@ -43,7 +51,18 @@ module.exports = {
       };
     },
   },
-
+  '/get/user/:id': {
+    dynamic: true,
+    method: 'get',
+    result(req, res) {
+      const { id } = req.params;
+      // 这里执行出错，会进入错误处理器，得到的返回结果是500页面
+      return {
+        success: true,
+        id,
+      };
+    },
+  },
   '/get/pureFunction/withError': {
     method: 'get',
     result(req, res) {

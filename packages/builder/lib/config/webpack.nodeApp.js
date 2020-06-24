@@ -6,7 +6,7 @@
  * @Author: erye
  * @Date: 2020-06-02 18:40:35
  * @Last Modified by: erye
- * @Last Modified time: 2020-06-22 13:48:56
+ * @Last Modified time: 2020-06-24 16:29:44
  */
 
 const { resolve } = require("path");
@@ -19,14 +19,15 @@ const _jsx = require("./cell/webpack.jsx.js");
 const _isomorphicStyle = require("./cell/webpack.isomorphicStyle");
 
 module.exports = ({ mode, meseConfigUrl, outputPath }) => {
+  const name = "NODE_APP";
   return merge(
     _common(),
-    _progressBar({ name: "NODE_APP" }),
+    _progressBar({ name }),
     _entryPages(meseConfigUrl),
     _jsx(),
     _isomorphicStyle(),
     {
-      name: "NODE_APP",
+      name,
       target: "node",
       mode,
       devtool: false,

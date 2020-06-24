@@ -16,8 +16,8 @@ title: 页面入口
 ```javascript
 export async function getPageConfig({ path, params, query, fetch }) {
   // path  请求地址的路径部分
-  // params 动态路由的动态参数集，暂不支持
-  // query 查询参数
+  // params 动态路由的动态参数集
+  // query 查询参数集
   // fetch 这里使用的node-fetch，可以阅读它的文档来了解如何使用它
 
   return {
@@ -51,10 +51,10 @@ export async function getPageConfig({ path, params, query, fetch }) {
 ### getPreloadedStateString
 
 ```javascript
-export async function getPreloadedStateString({ path, query, fetch }) {
+export async function getPreloadedStateString({ path, params, query, fetch }) {
   // path   请求地址的路径部分
-  // params 动态路由的动态参数集，暂不支持
-  // query  查询参数
+  // params 动态路由的动态参数集
+  // query  查询参数集
   // fetch  node-fetch
 
   // 服务端执行，预加载数据
@@ -70,10 +70,17 @@ export async function getPreloadedStateString({ path, query, fetch }) {
 import './common.less';
 import React from 'react';
 
-export function createPage({ path, query, preloadedStateString, error }) {
+export function createPage({
+  path,
+  params,
+  query,
+  preloadedStateString,
+  error,
+}) {
   // path 请求地址的路径部分
-  // query 查询参数
-  // preloadedStateString 预加载数据，字符串格式
+  // params 动态路由的动态参数集
+  // query 查询参数集
+  // preloadedStateString 预加载数据，字符串格式，是 getPreloadedStateString 的结果
   // error 500页面独有的字段，结构为 { message: string, stack: string }
   if (preloadedStateString) {
     const preloadedState = JSON.parse(preloadedStateString);

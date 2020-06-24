@@ -66,7 +66,8 @@ $ npm run serve
 │   ├─ common.less
 │   ├─ 404.js
 │   ├─ 500.js
-│   ├─ home.js
+│   ├─ bookDetail.js
+│   ├─ index.js
 │   └─ pageWithPreloadedState.js
 │
 ├─ api/

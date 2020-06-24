@@ -6,7 +6,7 @@
  * @Author: erye
  * @Date: 2020-06-02 17:54:13
  * @Last Modified by: erye
- * @Last Modified time: 2020-06-22 13:48:45
+ * @Last Modified time: 2020-06-24 16:29:10
  */
 const { resolve } = require("path");
 const merge = require("webpack-merge");
@@ -20,18 +20,18 @@ const _manifest = require("./cell/webpack.manifest");
 const _optimization = require("./cell/webpack.optimization");
 
 module.exports = ({ mode, meseConfigUrl, outputPath }) => {
-  const isProd = mode === "production";
+  const [isProd, name] = [mode === "production", "BROWSER_APP"];
 
   return merge(
     _common(),
-    _progressBar({ name: "BROWSER_APP" }),
+    _progressBar({ name }),
     _entryPages(meseConfigUrl),
     _jsx(),
     _optimizeStyle(isProd),
     _manifest(),
     _optimization(),
     {
-      name: "BROWSER_APP",
+      name,
       target: "web",
       mode,
       devtool: isProd ? false : "source-map",

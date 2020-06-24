@@ -1,12 +1,12 @@
-import "./common.less";
+import styles from "./common.less";
 
 import React from "react";
 
 function NotFound() {
   return (
-    <div className="app">
-      <h1 className="title">404</h1>
-      <p className="description">Page not found.</p>
+    <div className={styles.app}>
+      <h1 className={styles.title}>404</h1>
+      <p className={styles.description}>Page not found.</p>
     </div>
   );
 }

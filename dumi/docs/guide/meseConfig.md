@@ -12,8 +12,6 @@ title: 项目配置
 
 下面这个示例是 `@mese/create-sc-mese-app` 生成的默认配置。
 
-还未支持动态路由。
-
 ```javascript
 /**
  * 配置文件
@@ -21,12 +19,17 @@ title: 项目配置
 
 module.exports = {
   pages: [
-    { path: '/index', component: '/pages/home.js' }, // 数组第一个作为首页
+    { path: '/index', component: '/pages/index.js' }, // 数组第一个作为首页
     { path: '/404', component: '/pages/404.js' }, // 作为404页面
     { path: '/500', component: '/pages/500.js' }, // 作为500页面
     {
-      path: '/pageWithPreloadedState',
-      component: '/pages/pageWithPreloadedState.js',
+      path: '/page/preloadedState', // 预加载数据的示例页面
+      component: '/pages/preloadedState.js',
+    },
+    {
+      path: '/page/book/:id',
+      component: '/pages/bookDetail.js',
+      dynamic: true, // 使用动态路由
     },
   ],
   apiFiles: ['/api/json.js', '/api/pureFunction.js', '/api/asyncFunction.js'],
@@ -42,4 +45,8 @@ module.exports = {
 - `pages` 中的 `/404` 页面作为 `404` 页面
 - `pages` 中的 `/500` 页面作为 `500` 页面
 
-还未支持动态路由。
+## 路由的匹配优先级
+
+```
+静态路由的页面 > 静态路由的api > 动态路由的页面 > 动态路由的api
+```
