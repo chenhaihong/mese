@@ -16,10 +16,11 @@
     "url": "git+https://github.com/chenhaihong/mese.git"
   },
   "dependencies": {
+    "@types/jest": "^26.0.3",
     "eslint": "^7.1.0",
     "eslint-plugin-react": "^7.20.0",
     "fs-extra": "9.0.1",
-    "jest": "^26.0.1",
+    "jest": "26.1.0",
     "lerna": "^3.22.0",
     "minimist": "1.2.5"
   }

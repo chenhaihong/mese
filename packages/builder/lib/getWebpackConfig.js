@@ -1,9 +1,8 @@
 /*eslint no-console: 0 */
 
-const getNodeMeseConfigConf = require("./config/webpack.nodeMeseConfig");
-const getApiConf = require("./config/webpack.api");
-const getBrowserAppConf = require("./config/webpack.browserApp");
-const getNodeAppConf = require("./config/webpack.nodeApp");
+const getNodeApiConf = require("./config/webpack.nodeApi");
+const getNodePageConf = require("./config/webpack.nodePage");
+const getBrowserPageConf = require("./config/webpack.browserPage");
 
 module.exports = getWebpackConfig;
 
@@ -15,10 +14,13 @@ module.exports = getWebpackConfig;
  * @returns {Array} 一个包含2个构建配置对象的数组
  */
 function getWebpackConfig({ mode, meseConfigUrl, outputPath }) {
+  if (!["production", "development"].includes(mode)) {
+    mode = "production";
+  }
+
   return [
-    getNodeMeseConfigConf({ mode, meseConfigUrl, outputPath }),
-    getApiConf({ mode, meseConfigUrl, outputPath }),
-    getBrowserAppConf({ mode, meseConfigUrl, outputPath }),
-    getNodeAppConf({ mode, meseConfigUrl, outputPath }),
+    getNodeApiConf({ mode, meseConfigUrl, outputPath }),
+    getNodePageConf({ mode, meseConfigUrl, outputPath }),
+    getBrowserPageConf({ mode, meseConfigUrl, outputPath }),
   ];
 }

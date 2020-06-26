@@ -19,11 +19,11 @@ function getEntry(meseConfigUrl) {
 
   const { pages } = require(meseConfigUrl);
   pages.forEach(({ path, component }) => {
-    const [pascalCasedRoute, pageComponentUrl] = [
-      pascalCase(path), // 1 将化后的路由作为entry的key
+    const [pascalCasedKey, pageAbsolutePath] = [
+      pascalCase(path), // 1 帕斯卡格式化的路由作为entry的key
       join(appRoot, component), // 2 拼接出页面组件的绝对路径
     ];
-    entry[pascalCasedRoute] = pageComponentUrl;
+    entry[pascalCasedKey] = pageAbsolutePath;
   });
   return entry;
 }

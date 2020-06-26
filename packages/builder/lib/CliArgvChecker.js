@@ -4,6 +4,17 @@ const minimist = require("minimist");
 
 // 解析命令行参数
 module.exports = class CliArgvChecker {
+  static check(callback) {
+    const inputs = CliArgvChecker._parse();
+    const { meseConfigUrl } = inputs;
+    if (!fse.pathExistsSync(meseConfigUrl)) {
+      console.log("[MESE] meseConfigUrl not found.");
+      return;
+    }
+
+    callback && callback(inputs);
+  }
+
   static _parse() {
     // 1 读取用户的输入值
     let {
@@ -26,16 +37,5 @@ module.exports = class CliArgvChecker {
 
     // 3 返回结果
     return { mode, meseConfigUrl, outputPath, host, port };
-  }
-
-  static check(callback) {
-    const inputs = CliArgvChecker._parse();
-    const { meseConfigUrl } = inputs;
-    if (!fse.pathExistsSync(meseConfigUrl)) {
-      console.log("[MESE] meseConfigUrl not found.");
-      return;
-    }
-
-    callback && callback(inputs);
   }
 };

@@ -1,0 +1,33 @@
+{
+  "name": "@mese/preparer",
+  "version": "0.0.4",
+  "description": "预备器,制定了打包器的文件打包规范,同时用于辅助server使用页面和api",
+  "author": "erye <erye@tiiit.cn>",
+  "homepage": "https://mese.tiiit.cn/",
+  "license": "MIT",
+  "main": "lib/Preparer.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenhaihong/mese.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/chenhaihong/mese/issues"
+  },
+  "dependencies": {
+    "fs-extra": "9.0.1",
+    "pascal-case": "3.1.1"
+  }
+}

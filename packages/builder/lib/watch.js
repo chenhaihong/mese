@@ -24,6 +24,4 @@ function watch(config, callback) {
   const watching = compiler.watch(watchOptions, (err, stats) => {
     callback(err, stats, watching);
   });
-
-  return compiler;
 }

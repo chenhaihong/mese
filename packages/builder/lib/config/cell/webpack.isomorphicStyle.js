@@ -2,25 +2,48 @@ module.exports = () => {
   return {
     module: {
       rules: [
-        // pure css
+        // 针对 pure css, 最后忽略掉，减少体积
         {
           resource: { test: /\.css$/i, exclude: /\.m\.css$/i },
-          use: ["isomorphic-style-loader", "css-loader"],
+          use: ["ignore-loader", "css-loader"],
         },
-        // pure less
+        // 针对 pure less, 最后忽略掉，减少体积
         {
           resource: { test: /\.less$/i, exclude: /\.m\.less$/i },
-          use: ["isomorphic-style-loader", "css-loader", "less-loader"],
+          use: ["ignore-loader", "css-loader", "less-loader"],
         },
-        // css module
+        // 针对 css module， 需要同构支持
         {
           resource: { test: /\.m\.css$/i },
-          use: ["isomorphic-style-loader", "css-loader"],
+          use: [
+            "isomorphic-style-loader",
+            {
+              loader: "css-loader",
+              options: {
+                modules: true,
+                url: false,
+                localsConvention: "camelCase",
+                importLoaders: 1,
+              },
+            },
+          ],
         },
-        // less module
+        // 针对 less module， 需要同构支持
         {
           resource: { test: /\.m\.less$/i },
-          use: ["isomorphic-style-loader", "css-loader", "less-loader"],
+          use: [
+            "isomorphic-style-loader",
+            {
+              loader: "css-loader",
+              options: {
+                modules: true,
+                url: false,
+                localsConvention: "camelCase",
+                importLoaders: 2,
+              },
+            },
+            "less-loader",
+          ],
         },
       ],
     },
